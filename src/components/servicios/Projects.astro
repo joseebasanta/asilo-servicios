@@ -1,0 +1,58 @@
+---
+import { projects, projectsSection } from "../../data/servicios";
+import SectionHead from "./SectionHead.astro";
+---
+
+<section class="s-projects" id="trabajo" aria-labelledby="proyectos-title">
+  <div class="s-projects-inner">
+    <SectionHead
+      title={projectsSection.titleLines}
+      subtitle={projectsSection.subtitle}
+      titleId="proyectos-title"
+    />
+
+    <ul class="s-projects-grid">
+      {
+        projects.map((project, i) => (
+          <li class="s-project" data-reveal style={`--reveal-i: ${i + 1}`}>
+            <div class="s-project-media">
+              <img
+                class="s-project-image"
+                src={project.image.src}
+                alt={project.image.alt}
+                width="1440"
+                height="1080"
+                loading="lazy"
+                decoding="async"
+              />
+              {/* Decorativo: la imagen ya describe el proyecto; el video la anima en hover o, en móvil, al estar a la vista. */}
+              {project.video && (
+                <video
+                  class="s-project-video"
+                  src={project.video}
+                  muted
+                  loop
+                  playsinline
+                  preload="none"
+                  disablepictureinpicture
+                  aria-hidden="true"
+                  tabindex="-1"
+                  data-project-video
+                />
+              )}
+            </div>
+            <div class="s-project-body">
+              <div class="s-project-text">
+                <h3 class="s-project-name s-title-h5">{project.name}</h3>
+                <p class="s-project-description s-paragraph-md">{project.description}</p>
+              </div>
+              <ul class="s-tags" aria-label={`Servicios en ${project.name}`}>
+                {project.tags.map((tag) => <li class="s-tag s-label-sm">{tag}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

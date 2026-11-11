@@ -1,0 +1,1185 @@
+/* ==========================================================================
+   Landing de servicios v2 (/servicios) — Asilo Digital.
+   Todo vive bajo body.servicios para no tocar el resto del sitio.
+   ========================================================================== */
+
+/* Tokens de la v2, tomados de Figma ("Asilo Services"): familias (--font-*),
+   escala tipográfica (--text-*) y escala de color (--color-*). */
+.servicios {
+  /* Familias (declaradas en fonts.css). Qué rol usa cada una lo define la escala tipográfica. */
+  --font-frama: var(--font-sans); /* Figma usa Switzer también en los títulos. */
+  --font-frama-text: var(--font-sans);
+  --font-sans: "Switzer", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Escala tipográfica (Figma "Asilo Services", estilos de texto locales).
+     --text-<estilo> es el shorthand de font (peso tamaño/line-height familia): tamaño en rem y
+     line height como multiplicador del tamaño (1.2 = 120 % en Figma);
+     --text-<estilo>-tracking va aparte porque font no lo incluye. Úsalos con las clases .s-<estilo>. */
+  /* Title/H1 Title — Switzer 500, 56px, line height 120 %, -1% */
+  --text-title-h1: 500 3.5rem/1.2 var(--font-frama);
+  --text-title-h1-tracking: -0.01em;
+  /* Title/H2 Title — Switzer 500, 48px, line height 120 %, -1% */
+  --text-title-h2: 500 3rem/1.2 var(--font-frama);
+  --text-title-h2-tracking: -0.01em;
+  /* Title/H3 Title — Switzer 500, 40px, line height 120 %, -1% */
+  --text-title-h3: 500 2.5rem/1.2 var(--font-frama);
+  --text-title-h3-tracking: -0.01em;
+  /* Title/H4 Title — Switzer 500, 32px, line height 130 %, -0.5% */
+  --text-title-h4: 500 2rem/1.3 var(--font-frama);
+  --text-title-h4-tracking: -0.005em;
+  /* Title/H5 Title — Switzer 500, 24px, line height 140 %, 0% */
+  --text-title-h5: 500 1.5rem/1.4 var(--font-frama);
+  --text-title-h5-tracking: 0;
+  /* Title/H6 Title — Switzer 500, 20px, line height 140 %, 0% */
+  --text-title-h6: 500 1.25rem/1.4 var(--font-frama);
+  --text-title-h6-tracking: 0;
+  /* Label/X Large — Switzer 500, 24px, line height 150 %, -1.5% */
+  --text-label-xl: 500 1.5rem/1.5 var(--font-sans);
+  --text-label-xl-tracking: -0.015em;
+  /* Label/Large — Switzer 500, 18px, line height 150 %, -1.33% */
+  --text-label-lg: 500 1.125rem/1.5 var(--font-sans);
+  --text-label-lg-tracking: -0.0133em;
+  /* Label/Medium — Switzer 500, 16px, line height 150 %, -1.1% */
+  --text-label-md: 500 1rem/1.5 var(--font-sans);
+  --text-label-md-tracking: -0.011em;
+  /* Label/Small — Switzer 500, 14px, line height 150 %, -0.6% */
+  --text-label-sm: 500 0.875rem/1.5 var(--font-sans);
+  --text-label-sm-tracking: -0.006em;
+  /* Label/X Small — Switzer 500, 12px, line height 150 %, 0% */
+  --text-label-xs: 500 0.75rem/1.5 var(--font-sans);
+  --text-label-xs-tracking: 0;
+  /* Paragraph/X Large — Switzer 400, 24px, line height 150 %, -1.5% */
+  --text-paragraph-xl: 400 1.5rem/1.5 var(--font-sans);
+  --text-paragraph-xl-tracking: -0.015em;
+  /* Paragraph/Large — Switzer 400, 18px, line height 150 %, -1.33% */
+  --text-paragraph-lg: 400 1.125rem/1.5 var(--font-sans);
+  --text-paragraph-lg-tracking: -0.0133em;
+  /* Paragraph/Medium — Switzer 400, 16px, line height 150 %, -1.1% */
+  --text-paragraph-md: 400 1rem/1.5 var(--font-sans);
+  --text-paragraph-md-tracking: -0.011em;
+  /* Paragraph/Small — Switzer 400, 14px, line height 150 %, -0.6% */
+  --text-paragraph-sm: 400 0.875rem/1.5 var(--font-sans);
+  --text-paragraph-sm-tracking: -0.006em;
+  /* Paragraph/X Small — Switzer 400, 12px, line height 150 %, 0% */
+  --text-paragraph-xs: 400 0.75rem/1.5 var(--font-sans);
+  --text-paragraph-xs-tracking: 0;
+  /* Subheading/Medium — Switzer 500, 16px, line height 150 %, 6%, mayúsculas */
+  --text-subheading-md: 500 1rem/1.5 var(--font-sans);
+  --text-subheading-md-tracking: 0.06em;
+  /* Subheading/Small — Switzer 500, 14px, line height 150 %, 6%, mayúsculas */
+  --text-subheading-sm: 500 0.875rem/1.5 var(--font-sans);
+  --text-subheading-sm-tracking: 0.06em;
+  /* Subheading/X Small — Switzer 500, 12px, line height 150 %, 4%, mayúsculas */
+  --text-subheading-xs: 500 0.75rem/1.5 var(--font-sans);
+  --text-subheading-xs-tracking: 0.04em;
+  /* Subheading/2X Small — Switzer 500, 11px, line height 110 %, 2%, mayúsculas */
+  --text-subheading-2xs: 500 0.6875rem/1.1 var(--font-sans);
+  --text-subheading-2xs-tracking: 0.02em;
+  /* Docs/Label — Switzer 500, 18px, line height 175 %, -1.5% */
+  --text-docs-label: 500 1.125rem/1.75 var(--font-sans);
+  --text-docs-label-tracking: -0.015em;
+  /* Docs/Paragraph — Switzer 400, 18px, line height 175 %, -1.5% */
+  --text-docs-paragraph: 400 1.125rem/1.75 var(--font-sans);
+  --text-docs-paragraph-tracking: -0.015em;
+
+  /* Escala de color (Figma "Asilo Services", estilos de color locales). */
+  --color-background: #0f0f0f; /* Background/Background */
+  --color-black: #000000; /* Foundations/Black */
+  --color-white: #ffffff; /* Foundations/White */
+  --color-grey-1000: #121212; /* Agregado fuera de Figma: fondo de la tarjeta de servicios. */
+  --color-grey-975: #121212; /* Agregado fuera de Figma: fondo de la sección FAQ (mismo valor que grey-1000). */
+  --color-grey-950: #171717;
+  --color-grey-900: #1c1c1c;
+  --color-grey-800: #262626;
+  --color-grey-700: #333333;
+  --color-grey-600: #5c5c5c;
+  --color-grey-550: #707070;
+  --color-grey-500: #7b7b7b;
+  --color-grey-400: #a3a3a3;
+  --color-grey-300: #d1d1d1;
+  --color-grey-200: #ebebeb;
+  --color-grey-100: #f5f5f5;
+  --color-grey-50: #f7f7f7;
+  --color-grey: var(--color-grey-500); /* grey/500 - default */
+  --color-blue-950: #000a1a;
+  --color-blue-900: #001433;
+  --color-blue-800: #002966;
+  --color-blue-700: #003d99;
+  --color-blue-600: #0052cc;
+  --color-blue-500: #0066ff;
+  --color-blue-400: #3385ff;
+  --color-blue-300: #66a3ff;
+  --color-blue-200: #99c2ff;
+  --color-blue-100: #cce0ff;
+  --color-blue-50: #e5f0ff;
+  --color-blue: var(--color-blue-500); /* blue/500 - default */
+
+  /* Tokens de tema: el rol de cada color. Estos son los del modo oscuro (por defecto);
+     Solo hay modo oscuro. Los componentes usan estos y no la escala directa. */
+  --surface-page: var(--color-background);
+  --surface-section: var(--color-grey-975);
+  --surface-card: var(--color-grey-1000);
+  --surface-card-hover: var(--color-grey-950);
+  --surface-media: var(--color-grey-900);
+  --fg-strong: var(--color-white);
+  --fg-body: var(--color-grey-300);
+  --fg-muted: var(--color-grey-400);
+  --border-subtle: var(--color-grey-800);
+  --border-strong: var(--color-grey-700);
+  --border-tag: var(--color-grey-550);
+  /* Botones invertidos respecto de la página (flechas del carrusel). */
+  --inverse-bg: var(--color-white);
+  --inverse-bg-hover: var(--color-grey-200);
+  --inverse-fg: var(--color-grey-950);
+  --dot: var(--color-grey-600);
+  --dot-hover: var(--color-grey-400);
+  /* Logos de clientes en un solo color: blanco sobre oscuro. */
+  --logo-filter: brightness(0) invert(1);
+  /* Sombras de las imágenes de proyectos. En reposo, levemente elevada: borde de luz de 1px y un resplandor
+     gris claro pegado a la tarjeta (sobre el fondo casi negro, una sombra negra no se ve; una clara sí).
+     En hover, contenida en los huecos: el halo llega ~24px hacia abajo (el título está a 32px con la
+     elevación) y ~14px a los lados (las tarjetas vecinas están a 32px); un halo azul ceñido alrededor de la
+     foto lo hace más visible sin agrandarlo. */
+  --shadow-media-rest:
+    0 0 0 1px rgb(255 255 255 / 0.1),
+    0 2px 6px color-mix(in srgb, var(--color-grey-200) 10%, transparent),
+    0 6px 16px -6px color-mix(in srgb, var(--color-grey-200) 16%, transparent);
+  /* Sin el anillo blanco de 1px: en hover el borde lo dibuja .s-project-media::after (azul arriba y abajo, transparente
+     en el medio de los costados). */
+  --shadow-media-hover:
+    0 4px 8px rgb(0 0 0 / 0.8),
+    0 12px 24px -10px rgb(0 0 0 / 1),
+    0 10px 24px -10px color-mix(in srgb, var(--color-blue-500) 90%, transparent),
+    0 0 16px -4px color-mix(in srgb, var(--color-blue-500) 35%, transparent);
+  /* Destello del haz de la tarjeta de servicios: blanco sobre oscuro. */
+  --beam-highlight: var(--color-white);
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--fg-strong);
+  font: var(--text-paragraph-md);
+  letter-spacing: var(--text-paragraph-md-tracking);
+  /* Sin ligaduras ni alternos contextuales en todos los textos (ss11 es una variante propia de Geist). */
+  font-feature-settings: "calt" 0, "liga" 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html:has(body.servicios) { color-scheme: dark; background: #0f0f0f; scroll-behavior: smooth; }
+
+.servicios *, .servicios *::before, .servicios *::after { box-sizing: border-box; }
+.servicios img { display: block; max-width: 100%; height: auto; }
+.servicios :where(h1, h2, h3, p, ul, ol, figure) { margin: 0; }
+.servicios :where(ul, ol) { padding: 0; list-style: none; }
+:where(.servicios a) { color: inherit; }
+
+.servicios :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+/* Íconos y logo de un solo color: el SVG (blanco) se usa como máscara y toma el color del texto
+   (currentColor), así cambian con el tema sin duplicar archivos. */
+.s-icon {
+  display: block; flex: none; width: 24px; height: 24px; background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+/* Estilos de texto: una clase por estilo de Figma. */
+.s-title-h1 { font: var(--text-title-h1); letter-spacing: var(--text-title-h1-tracking); }
+.s-title-h2 { font: var(--text-title-h2); letter-spacing: var(--text-title-h2-tracking); }
+.s-title-h3 { font: var(--text-title-h3); letter-spacing: var(--text-title-h3-tracking); }
+.s-title-h4 { font: var(--text-title-h4); letter-spacing: var(--text-title-h4-tracking); }
+.s-title-h5 { font: var(--text-title-h5); letter-spacing: var(--text-title-h5-tracking); }
+.s-title-h6 { font: var(--text-title-h6); letter-spacing: var(--text-title-h6-tracking); }
+.s-label-xl { font: var(--text-label-xl); letter-spacing: var(--text-label-xl-tracking); }
+.s-label-lg { font: var(--text-label-lg); letter-spacing: var(--text-label-lg-tracking); }
+.s-label-md { font: var(--text-label-md); letter-spacing: var(--text-label-md-tracking); }
+.s-label-sm { font: var(--text-label-sm); letter-spacing: var(--text-label-sm-tracking); }
+.s-label-xs { font: var(--text-label-xs); letter-spacing: var(--text-label-xs-tracking); }
+.s-paragraph-xl { font: var(--text-paragraph-xl); letter-spacing: var(--text-paragraph-xl-tracking); }
+.s-paragraph-lg { font: var(--text-paragraph-lg); letter-spacing: var(--text-paragraph-lg-tracking); }
+.s-paragraph-md { font: var(--text-paragraph-md); letter-spacing: var(--text-paragraph-md-tracking); }
+.s-paragraph-sm { font: var(--text-paragraph-sm); letter-spacing: var(--text-paragraph-sm-tracking); }
+.s-paragraph-xs { font: var(--text-paragraph-xs); letter-spacing: var(--text-paragraph-xs-tracking); }
+.s-subheading-md { font: var(--text-subheading-md); letter-spacing: var(--text-subheading-md-tracking); text-transform: uppercase; }
+.s-subheading-sm { font: var(--text-subheading-sm); letter-spacing: var(--text-subheading-sm-tracking); text-transform: uppercase; }
+.s-subheading-xs { font: var(--text-subheading-xs); letter-spacing: var(--text-subheading-xs-tracking); text-transform: uppercase; }
+.s-subheading-2xs { font: var(--text-subheading-2xs); letter-spacing: var(--text-subheading-2xs-tracking); text-transform: uppercase; }
+.s-docs-label { font: var(--text-docs-label); letter-spacing: var(--text-docs-label-tracking); }
+.s-docs-paragraph { font: var(--text-docs-paragraph); letter-spacing: var(--text-docs-paragraph-tracking); }
+
+/* Layout: margen lateral de página (64px en desktop, como en Figma). */
+.servicios { --page-gutter: 16px; --nav-height: 72px; }
+@media (min-width: 768px) { .servicios { --page-gutter: 24px; } }
+@media (min-width: 1280px) { .servicios { --page-gutter: 64px; } }
+
+/* Botones */
+.s-btn {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px 20px; border-radius: 2px;
+  text-decoration: none; white-space: nowrap;
+}
+/* Hover: el color del hover barre el botón de izquierda a derecha; al salir se retira hacia la derecha y el color
+   original vuelve desde la izquierda. Es una capa detrás del texto (z-index -1 dentro del botón) que se escala en X.
+   Cada variante elige su color con --btn-fill. También con el foco del teclado. */
+.s-btn::before, .s-carousel-arrow::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: var(--btn-fill);
+  transform: scaleX(0); transform-origin: right center;
+  transition: transform 450ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+@media (hover: hover) {
+  .s-btn:hover::before, .s-carousel-arrow:hover::before { transform: scaleX(1); transform-origin: left center; }
+}
+.s-btn:focus-visible::before, .s-carousel-arrow:focus-visible::before { transform: scaleX(1); transform-origin: left center; }
+.s-btn--primary { background: var(--color-blue-500); color: var(--color-white); --btn-fill: var(--color-blue-600); }
+/* Borde por dentro (box-shadow) para que mida lo mismo que el primario, como en Figma. */
+.s-btn--secondary { background: var(--color-white); color: var(--color-black); box-shadow: inset 0 0 0 1px var(--color-black); --btn-fill: var(--color-grey-200); }
+/* El relleno queda dentro del borde de 1px para no taparlo. */
+.s-btn--secondary::before { inset: 1px; }
+/* El contorno por defecto toma el texto negro del botón; se usa el del texto de la página, que contrasta con el fondo. */
+.s-btn--secondary:focus-visible { outline-color: var(--fg-strong); }
+/* Tamaños: sm 32px (nav), base 40px, lg 48px (hero y CTA final). */
+.s-btn--sm { min-height: 32px; padding: 0 16px; }
+.s-btn--lg { padding: 12px 24px; }
+
+/* Nav (Figma: Asilo Core, "Nav (vidrio)", 72px): logo a la izquierda y enlaces a la derecha, sin fondo ni línea. */
+.s-nav { position: sticky; top: 0; z-index: 50; isolation: isolate; }
+/* Vidrio: el velo y el desenfoque van en una capa propia, desvanecida hacia abajo, para que el texto que pasa por
+   detrás no choque con el logo y los enlaces ni se note un corte. */
+/* Se extiende 8px por debajo del nav para que el botón "Contacto" no quede justo en el borde del velo. */
+.s-nav::before {
+  content: ""; position: absolute; inset: 0 0 -8px; z-index: -1; pointer-events: none;
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--surface-page) 94%, transparent) 60%, transparent);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent); mask-image: linear-gradient(to bottom, #000 75%, transparent);
+}
+.s-nav-inner {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 32px;
+  /* 72px, como en Figma (sin línea inferior). */
+  min-height: var(--nav-height); padding-inline: var(--page-gutter);
+  /* Mismo contenedor de 1312px (1440 menos 64px por lado, como en Figma) que las secciones: el logo y los enlaces se alinean con las tarjetas. */
+  max-width: calc(1312px + 2 * var(--page-gutter)); margin-inline: auto;
+}
+.s-nav-logo { display: inline-flex; align-items: center; justify-self: start; min-height: 44px; text-decoration: none; }
+/* Wordmark de Figma (nav y footer): "Asilo" y "Labs" en Switzer Semibold 21.33px (-5%), con "Labs" sobre un rectángulo azul. */
+.s-wordmark {
+  display: inline-block; font-size: 1.3333rem; font-weight: 600; line-height: 1.3125; letter-spacing: -0.05em;
+  color: var(--fg-strong); white-space: nowrap;
+}
+.s-wordmark-pill {
+  display: inline-block; margin-left: 2px; padding-inline: 2px; border-radius: 3.56px; background: var(--color-blue-500);
+  line-height: 1.04;
+}
+.s-nav-menu { display: none; }
+.s-nav-links { display: flex; gap: 32px; }
+/* Figma: Switzer Medium 14px en grey-300; el enlace se aclara a blanco al pasar el mouse. */
+.s-nav-links a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--fg-body); text-decoration: none; font-size: 0.875rem; font-weight: 500; line-height: 1.5; letter-spacing: -0.006em;
+  transition: color 160ms ease;
+}
+.s-nav-links a:hover { color: var(--fg-strong); }
+/* "Contacto" va como botón azul (s-btn--primary, tamaño sm de 32px), centrado con los enlaces y con texto blanco. */
+.s-nav-links { align-items: center; }
+.s-nav-links .s-nav-cta, .s-nav-links .s-nav-cta:hover { min-height: 32px; color: var(--color-white); }
+
+@media (min-width: 768px) {
+  .s-nav-menu { display: block; }
+}
+
+/* Hero (Figma 91:7203): bloque de 724px bajo el nav con el contenido centrado en 768px. */
+.s-hero {
+  position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: center;
+  /* El halo del texto se extiende más allá del contenido; en móvil no debe crear scroll horizontal. */
+  overflow-x: clip;
+  /* El hero sube por debajo del nav (que es de vidrio) y suma ese alto a su padding: el contenido no se mueve. */
+  margin-top: calc(-1 * var(--nav-height));
+  padding: calc(96px + var(--nav-height)) var(--page-gutter) 16px;
+}
+/* v4: el texto del hero va centrado, sobre el resplandor de la grilla. */
+.s-hero-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 32px;
+  width: 100%; max-width: 1312px; margin-inline: auto; text-align: center;
+}
+.s-hero-text { position: relative; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+/* Title/H1 en desktop; en pantallas chicas baja a Title/H4 para que no se parta en muchas líneas. */
+.s-hero-title {
+  font: var(--text-title-h4); letter-spacing: var(--text-title-h4-tracking);
+  color: var(--fg-strong); text-wrap: balance;
+}
+/* Una frase por línea en todos los tamaños; en móvil cada frase se equilibra sola. */
+.s-hero-title-line { display: block; }
+/* v3: la bajada son dos frases, una por línea en desktop (Figma: texto de 860px); en móvil fluyen juntas. */
+.s-hero-lead { max-width: 860px; margin-inline: auto; }
+.s-hero-lead-line { display: inline; }
+.s-hero-lead {
+  color: var(--fg-body); text-wrap: pretty;
+}
+/* Figma (Switzer): la primera frase en peso 400, la segunda en 500 y el punto final en 600. */
+.s-hero-title-line { font-weight: 400; }
+.s-hero-title-line + .s-hero-title-line { font-weight: 500; }
+.s-hero-title-dot { font-weight: 600; }
+
+/* Fondo del hero (píxeles en canvas y viñeta): queda detrás del contenido gracias a isolation + z-index -1. */
+.s-hero-bg {
+  position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+  /* La grilla se apaga al final del hero para no cortarse en seco. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent);
+  mask-image: linear-gradient(to bottom, #000 80%, transparent);
+}
+/* Fondo de píxeles (servicios-pixels.ts, de la v2): 4 de cada 5 píxeles en gris y 1 en azul; el script lee estos colores. */
+.s-hero-pixels {
+  --pixel-muted: var(--color-grey-400);
+  --pixel-accent: var(--color-blue-500);
+  position: absolute; inset: 0; display: block; width: 100%; height: 100%;
+}
+/* Viñeta: oscurece los bordes para que la grilla se concentre detrás del texto. */
+.s-hero-vignette {
+  position: absolute; inset: 0; opacity: 0.8;
+  background: radial-gradient(circle at center, transparent 0%, var(--surface-page) 100%);
+}
+/* Halo oscuro detrás del título y la bajada para separarlos de los píxeles; se desvanece hacia afuera. */
+.s-hero-text::before {
+  content: ""; position: absolute; inset: -48px -64px; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--surface-page) 85%, transparent), transparent);
+}
+/* Sombra difusa del color de fondo alrededor de cada letra para que no se mezclen con los píxeles. */
+.s-hero-title { text-shadow: 0 0 32px var(--surface-page), 0 0 12px var(--surface-page); }
+.s-hero-lead { text-shadow: 0 0 16px var(--surface-page), 0 0 6px var(--surface-page); }
+/* Entrada: los botones y la franja de logos suben y aparecen al cargar. */
+@keyframes s-rise {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: none; }
+}
+.s-hero .s-logos { animation: s-rise 1000ms cubic-bezier(0.4, 0, 0.2, 1) 600ms both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .s-hero .s-logos { animation: none; }
+}
+
+/* Franja de logos (Figma 91:7568): espacios de 200×56 cada 24px que se desplazan sin fin, de borde a borde.
+   La pista arranca en el borde izquierdo (flex-start, no center): centrada, al final de cada vuelta su borde derecho
+   llegaba a la mitad de la franja y dejaba un hueco antes de reiniciar. Así cubre hasta 2 copias (2240px con 5 logos). */
+.s-logos {
+  display: flex; justify-content: flex-start; overflow: hidden;
+  margin: 64px calc(-1 * var(--page-gutter)) 0; padding-block: 16px;
+  /* Desvanecido ancho en los dos bordes: los logos entran y salen sin corte. */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+}
+/* 80s por vuelta con seis logos (unos 33px por segundo). La vuelta recorre 2 copias de 224px por logo, así que la
+   duración se ajusta con --logos-count (lo pone Hero.astro) para mantener esa velocidad con otra cantidad. */
+.s-logos-track { display: flex; flex: none; animation: s-logos-scroll calc(var(--logos-count, 6) * 80s / 6) linear infinite; }
+.s-logos:hover .s-logos-track { animation-play-state: paused; }
+.s-logos-set { display: flex; flex: none; }
+/* Margen en vez de gap para que cada copia mida lo mismo y el bucle no salte. */
+.s-logos-item { display: grid; place-items: center; width: 200px; height: 56px; margin-right: 24px; }
+/* Los logos van en un solo color (blanco en oscuro, negro en claro), sea cual sea su color original. */
+.s-logos-item img { width: auto; height: calc(28px * var(--logo-scale, 1)); max-width: 180px; object-fit: contain; filter: var(--logo-filter); }
+@keyframes s-logos-scroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .s-logos-track { animation: none; }
+}
+
+@media (min-width: 768px) {
+  /* Figma: el hero mide 730px contando el nav; el título arranca a 252px y la franja de logos a 640px. */
+  .s-hero { min-height: 730px; justify-content: flex-start; padding-block: 252px 120px; }
+  .s-hero-text { gap: 20px; }
+  .s-logos { position: absolute; left: 0; right: 0; bottom: 18px; margin: 0; }
+  /* v3: el título de Figma mide 60px (un paso sobre Title/H1). */
+  .s-hero-title { font: var(--text-title-h1); font-size: 3.75rem; line-height: 1.1167; letter-spacing: -0.02em; }
+  .s-hero-lead-line { display: block; }
+}
+@media (min-width: 1024px) {
+  /* Foco al centro: los costados quedan vacíos y los logos aparecen poco a poco hacia el medio. */
+  .s-logos {
+    -webkit-mask-image: linear-gradient(90deg, transparent 15%, #000 35%, #000 65%, transparent 85%);
+    mask-image: linear-gradient(90deg, transparent 15%, #000 35%, #000 65%, transparent 85%);
+  }
+}
+
+/* Encabezado de sección: tagline, título y bajada centrados en 768px (Figma 91:7757). */
+.s-section-head {
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  width: 100%; max-width: 768px; margin-inline: auto; text-align: center;
+}
+/* Tagline una escala por debajo de Figma (Subheading XS en vez de SM) y un tono más oscuro (grey-400). */
+.s-section-tagline { color: var(--fg-muted); }
+.s-section-head-text { display: flex; flex-direction: column; gap: 24px; }
+/* Title/H2 en desktop; Title/H4 en móvil, igual que el hero. */
+.s-section-title {
+  font: var(--text-title-h4); letter-spacing: var(--text-title-h4-tracking);
+  color: var(--fg-strong); text-wrap: balance;
+}
+.s-section-lead { color: var(--fg-body); text-wrap: pretty; }
+.s-section-title-line { display: block; }
+/* Variante alineada a la izquierda (Testimonios). */
+.s-section-head--start { align-items: flex-start; max-width: none; margin-inline: 0; text-align: left; }
+
+/* Proyectos (Figma 91:7755): contenedor de 1312px, 3 columnas con 32px entre tarjetas y 64px entre filas. */
+.s-projects { padding: 64px var(--page-gutter); }
+.s-projects-inner {
+  display: flex; flex-direction: column; gap: 48px;
+  max-width: 1312px; margin-inline: auto;
+}
+.s-projects-grid { display: grid; grid-template-columns: 1fr; gap: 48px 32px; }
+.s-project { display: flex; flex-direction: column; gap: 24px; }
+/* Marco 4:3 (como los shots de Dribbble, 1600×1200): la imagen lo cubre y se recorta al centro si trae otra proporción. */
+.s-project-image {
+  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; background: var(--surface-media);
+  /* Sombras según el tema: ver --shadow-media-rest y --shadow-media-hover. */
+  box-shadow: var(--shadow-media-rest);
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+/* Hover (solo con mouse, para que no quede pegado en pantallas táctiles): sube 8px, el borde se aclara
+   y la sombra y el halo azul de marca crecen. */
+@media (hover: hover) {
+  .s-project:hover .s-project-image {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-media-hover);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-project-image { transition: box-shadow 300ms ease; }
+  .s-project:hover .s-project-image { transform: none; }
+}
+/* Video de proyecto (servicios-project-video.ts): va encima de la imagen, invisible hasta que se reproduce (en hover
+   o, en móvil, al estar a la vista); aparece y desaparece con un fundido y sube junto con la imagen. Con movimiento
+   reducido no se muestra. */
+.s-project-media { position: relative; }
+.s-project-video {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 2px;
+  pointer-events: none; opacity: 0;
+  transition: opacity 300ms ease, transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.s-project-video.is-playing { opacity: 1; }
+/* Borde con profundidad en hover: un anillo de 1px (misma máscara que el haz de Servicios) con un degradado vertical
+   azul. Se ve entero arriba, abajo y en las cuatro esquinas, y se vuelve transparente en el medio de los costados.
+   En Proyectos va encima de la imagen y del video, y sube con ellos; en las tarjetas de El problema va sobre su borde. */
+.s-project-media::after, .s-card--feature::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  padding: 1px; border-radius: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-blue-400) 0%,
+    color-mix(in srgb, var(--color-blue-500) 55%, transparent) 15%,
+    var(--ring-mid, transparent) 35%,
+    var(--ring-mid, transparent) 65%,
+    color-mix(in srgb, var(--color-blue-500) 55%, transparent) 85%,
+    var(--color-blue-400) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0;
+  transition: opacity 300ms ease, transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@media (hover: hover) {
+  .s-project:hover .s-project-video { transform: translateY(-8px); }
+  .s-project:hover .s-project-media::after { opacity: 1; transform: translateY(-8px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-project-video { display: none; }
+  .s-project:hover .s-project-media::after { transform: none; }
+}
+.s-project-body { display: flex; flex-direction: column; gap: 16px; }
+.s-project-text { display: flex; flex-direction: column; gap: 8px; }
+.s-project-name { color: var(--fg-strong); }
+.s-project-description { color: var(--fg-body); }
+.s-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.s-tag {
+  padding: 4px 8px; border: 1px solid var(--border-tag); border-radius: 2px;
+  color: var(--fg-body); white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  /* Desde tablet se parte como en Figma (ajuste normal, sin equilibrar líneas). */
+  .s-section-title { font: var(--text-title-h2); letter-spacing: var(--text-title-h2-tracking); text-wrap: wrap; }
+  .s-projects { padding-block: 80px; }
+  .s-projects-inner { gap: 80px; }
+  .s-projects-grid { grid-template-columns: repeat(2, 1fr); row-gap: 64px; }
+}
+@media (min-width: 1024px) {
+  .s-projects-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Servicios (Figma 91:7299): tarjeta con pestañas a la izquierda (máx. 480px) y el detalle a la derecha (800px). */
+.s-services { padding: 64px var(--page-gutter); }
+.s-services-inner {
+  display: flex; flex-direction: column; gap: 48px;
+  max-width: 1312px; margin-inline: auto;
+}
+.s-services-card {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle); border-radius: 2px; overflow: hidden;
+}
+.s-services-tabs { display: grid; grid-auto-rows: 1fr; border-bottom: 1px solid var(--border-subtle); }
+.s-services-tab {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 20px; border: 0; border-bottom: 1px solid var(--border-subtle);
+  background: transparent; color: var(--fg-muted); text-align: left; cursor: pointer;
+  font: var(--text-title-h6); letter-spacing: var(--text-title-h6-tracking);
+  transition: color 300ms ease;
+}
+.s-services-tab:last-child { border-bottom: 0; }
+/* Relleno azul que sube desde la línea inferior al seleccionar y baja hasta ella al soltar (como el video
+   de referencia); la línea de 1px se ilumina con el hover. */
+.s-services-tab::before,
+.s-services-tab::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; z-index: -1;
+  transform-origin: 50% 100%;
+}
+.s-services-tab::before {
+  top: 0; background: var(--color-blue-500);
+  transform: scaleY(0); opacity: 0;
+  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 400ms ease;
+}
+.s-services-tab::after {
+  height: 1px; background: var(--fg-strong); opacity: 0;
+  transition: opacity 200ms ease;
+}
+/* La flecha conserva el color fuerte aunque la etiqueta esté apagada; sobre el azul va siempre en blanco. */
+.s-services-tab-arrow {
+  color: var(--fg-strong); opacity: 0.5;
+  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 300ms ease;
+}
+/* Sobre el relleno azul el texto va en blanco en los dos temas. */
+.s-services-tab[aria-selected="true"], .s-services-tab[aria-selected="true"] .s-services-tab-arrow { color: var(--color-white); }
+.s-services-tab[aria-selected="true"]::before { transform: scaleY(1); opacity: 1; }
+.s-services-tab[aria-selected="true"] .s-services-tab-arrow { transform: rotate(-45deg); opacity: 1; }
+/* Hover (solo con mouse) y foco con teclado anticipan la selección: se ilumina la línea, asoma el azul
+   y la flecha se adelanta. El contenido solo cambia al hacer clic. */
+@media (hover: hover) {
+  .s-services-tab:not([aria-selected="true"]):hover { color: var(--fg-strong); }
+  .s-services-tab:not([aria-selected="true"]):hover::after { opacity: 1; }
+  .s-services-tab:not([aria-selected="true"]):hover::before { transform: scaleY(0.1); opacity: 0.5; }
+  .s-services-tab:not([aria-selected="true"]):hover .s-services-tab-arrow { transform: translateX(4px); opacity: 1; }
+}
+.s-services-tab:not([aria-selected="true"]):focus-visible { color: var(--fg-strong); }
+.s-services-tab:not([aria-selected="true"]):focus-visible::after { opacity: 1; }
+.s-services-tab:not([aria-selected="true"]):focus-visible::before { transform: scaleY(0.1); opacity: 0.5; }
+.s-services-tab:focus-visible { outline-color: var(--fg-strong); outline-offset: -4px; }
+@media (prefers-reduced-motion: reduce) {
+  .s-services-tab::before, .s-services-tab-arrow { transition: opacity 200ms ease; }
+}
+/* Todos los paneles ocupan la misma celda: la tarjeta toma el alto del más largo y no salta al cambiar. */
+.s-services-panels { display: grid; }
+.s-services-panel {
+  grid-area: 1 / 1;
+  display: flex; flex-direction: column; gap: 24px;
+  padding: 32px 20px;
+}
+.s-services-panel[hidden] { display: flex; visibility: hidden; }
+/* Por debajo de 1024px solo el panel activo ocupa lugar: si no, la tarjeta toma el alto del más largo y queda un
+   espacio vacío bajo los paneles cortos. En escritorio se mantiene la altura fija para que no salte. */
+@media (max-width: 1023px) {
+  .s-services-panel[hidden] { display: none; }
+}
+.s-services-panel-title {
+  font: var(--text-title-h5); letter-spacing: var(--text-title-h5-tracking);
+  color: var(--fg-strong); text-wrap: balance;
+}
+.s-services-panel-body { color: var(--fg-body); text-wrap: pretty; }
+.s-services-list { display: flex; flex-direction: column; gap: 10px; padding-left: 24px; list-style: disc; color: var(--fg-body); }
+.s-services-panel:focus-visible { outline-color: var(--fg-strong); outline-offset: -4px; }
+
+/* Haz de luz del borde (adaptado de "border-beam", 3,1s por vuelta): un degradado cónico gira alrededor de
+   la tarjeta y una máscara horizontal lo deja ver solo en el lado derecho. Colores de marca: azules con un
+   destello blanco en el centro y un toque índigo en la cola, sin rotar el tono. */
+@property --s-beam-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.s-services-beam {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit;
+  -webkit-mask-image: linear-gradient(90deg, transparent 55%, #000 85%);
+  mask-image: linear-gradient(90deg, transparent 55%, #000 85%);
+}
+.s-services-beam-ring {
+  position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+  background: conic-gradient(from var(--s-beam-angle), transparent 0deg, var(--color-blue-700) 15deg, var(--color-blue-500) 38deg, var(--color-blue-300) 56deg, var(--beam-highlight) 70deg, var(--color-blue-200) 82deg, #7c8cff 96deg, transparent 112deg);
+  /* Solo el anillo del borde: el área del contenido se recorta. */
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: s-beam-spin 3.1s linear infinite;
+}
+/* Halo: el mismo anillo más grueso y desenfocado, que se derrama hacia adentro de la tarjeta. */
+.s-services-beam-glow { position: absolute; inset: 0; filter: blur(14px); opacity: 0.8; }
+.s-services-beam-ring--wide { padding: 4px; }
+@keyframes s-beam-spin { to { --s-beam-angle: 360deg; } }
+@media (prefers-reduced-motion: reduce) {
+  /* Quieto, con el brillo centrado en el borde derecho. */
+  .s-services-beam-ring { animation: none; --s-beam-angle: 35deg; }
+}
+
+@media (min-width: 768px) {
+  .s-services { padding-block: 80px; }
+  .s-services-inner { gap: 80px; }
+  .s-services-tab { padding: 24px 32px; font: var(--text-title-h5); letter-spacing: var(--text-title-h5-tracking); }
+  .s-services-panel { padding: 48px 40px; }
+  .s-services-panel-title { font: var(--text-title-h4); letter-spacing: var(--text-title-h4-tracking); }
+}
+@media (min-width: 1024px) {
+  .s-services-card { flex-direction: row; }
+  .s-services-tabs { flex: 3 1 0; max-width: 480px; border-bottom: 0; border-right: 1px solid var(--border-subtle); }
+  .s-services-panels { flex: 5 1 0; }
+  /* Centrado vertical como en Figma; en móvil y tablet arranca arriba para no dejar un hueco sobre el texto. */
+  .s-services-panel { justify-content: center; padding: 64px; }
+  .s-services-panel-title { font: var(--text-title-h3); letter-spacing: var(--text-title-h3-tracking); }
+}
+
+/* v3 — El problema, Cómo trabajamos y Con quién trabajamos (Figma: Asilo Core). Mismo contenedor de 1312px que
+   las demás secciones; las tarjetas son planas, como las de servicios. */
+.s-problem, .s-process { padding: 64px var(--page-gutter); }
+.s-problem-inner, .s-process-inner { display: flex; flex-direction: column; gap: 48px; max-width: 1312px; margin-inline: auto; }
+.s-cards { display: grid; grid-template-columns: 1fr; gap: 24px; }
+.s-card {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 20px;
+  padding: 28px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle); border-radius: 2px;
+}
+/* Tarjeta con decorador (adaptada de "features-2"): texto centrado y un cuadrado de 144px con grilla difuminada
+   que sostiene el ícono. */
+/* 24px a los lados (28px arriba y abajo): el texto de la tercera tarjeta entra en 3 líneas en escritorio. */
+.s-card--feature { align-items: center; gap: 24px; padding-inline: 24px; text-align: center; }
+.s-card--feature .s-card-text { align-items: center; }
+.s-card-decorator {
+  position: relative; width: 144px; height: 144px; flex: none; color: var(--fg-strong);
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 70%, transparent 100%);
+}
+.s-card-decorator-grid {
+  position: absolute; inset: 0; opacity: 0.1;
+  background-image: linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.s-card-decorator-icon {
+  position: absolute; inset: 0; margin: auto; width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface-page); border-top: 1px solid var(--border-subtle); border-left: 1px solid var(--border-subtle);
+}
+/* Pasos de "Cómo trabajamos" (adaptado de "how-it-works-09"): círculo numerado, línea que los une en escritorio y
+   flecha entre pasos en móvil. */
+.s-steps { position: relative; display: grid; grid-template-columns: 1fr; gap: 32px; list-style: none; margin: 0; padding: 0; }
+.s-step { position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+.s-step .s-card-text { align-items: center; max-width: 320px; }
+.s-step-number {
+  position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px;
+  border: 1px solid var(--border-subtle); border-radius: 2px; background: var(--surface-page);
+  color: var(--fg-body); font-size: 0.75rem; font-weight: 600; font-variant-numeric: tabular-nums;
+}
+.s-step-arrow { display: flex; margin-top: 8px; color: var(--fg-body); opacity: 0.4; }
+.s-card-text { display: flex; flex-direction: column; gap: 6px; }
+.s-card-title { color: var(--fg-strong); text-wrap: balance; }
+/* Figma: los títulos de las tarjetas de "El problema" miden 22px. */
+.s-card--feature .s-card-title { font-size: 1.375rem; line-height: 1.4; }
+.s-card-body { color: var(--fg-body); text-wrap: pretty; }
+.s-services-price { margin-top: auto; padding-top: 8px; color: var(--fg-strong); }
+@media (min-width: 768px) {
+  .s-problem, .s-process { padding-block: 80px; }
+}
+@media (min-width: 1024px) {
+  .s-process { padding-block: 96px; }
+  .s-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) {
+  .s-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+  .s-steps::before { content: ""; position: absolute; inset-inline: 0; top: 24px; height: 1px; background: var(--border-subtle); }
+  .s-step-arrow { display: none; }
+}
+
+/* Testimonios (Figma 91:7386): título a la izquierda y carrusel a la derecha, columnas iguales con 80px entre ellas. */
+.s-testimonials { padding: 64px var(--page-gutter); }
+.s-testimonials-inner {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px;
+  max-width: 1312px; margin-inline: auto;
+}
+.s-carousel { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+/* Todas las tarjetas ocupan la misma celda: el carrusel toma el alto de la más larga y no salta. */
+.s-carousel-slides { display: grid; }
+.s-testimonial {
+  grid-area: 1 / 1;
+  display: flex; flex-direction: column; gap: 24px;
+  margin: 0; padding: 24px;
+  /* Mismo tratamiento que la tarjeta de servicios. */
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle); border-radius: 2px;
+}
+.s-testimonial[hidden] { display: flex; visibility: hidden; opacity: 0; }
+/* Hueco de logo de 48px de alto, como en Figma; el logo se ajusta dentro sin deformarse. */
+/* .servicios delante para ganarle a `.servicios img { height: auto }`. */
+.servicios .s-testimonial-logo {
+  align-self: flex-start; width: auto; max-width: 160px; height: 48px;
+  object-fit: contain; object-position: left center; margin-bottom: 24px;
+}
+.s-testimonial-quote { margin: 0; color: var(--fg-strong); }
+.s-testimonial-author { display: flex; align-items: center; gap: 20px; }
+.s-testimonial-avatar { flex: none; width: 56px; height: 56px; border-radius: 50%; }
+.s-testimonial-meta { display: flex; flex-direction: column; min-width: 0; }
+.s-testimonial-name { color: var(--fg-strong); }
+.s-testimonial-role { color: var(--fg-body); }
+.s-carousel-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.s-carousel-dots { display: flex; margin-left: -4px; } /* el primer punto queda al ras, como en Figma */
+/* Botones de 16×24 para que los puntos de 8px queden a 16px de distancia, como en Figma. */
+.s-carousel-dot {
+  display: grid; place-items: center; width: 16px; height: 24px;
+  padding: 0; border: 0; background: none; cursor: pointer;
+}
+.s-carousel-dot::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--dot); transition: background-color 160ms ease;
+}
+.s-carousel-dot:hover::before { background: var(--dot-hover); }
+.s-carousel-dot[aria-current="true"]::before { background: var(--fg-strong); }
+.s-carousel-dot:focus-visible { outline-color: var(--fg-strong); outline-offset: 0; }
+.s-carousel-arrows { display: flex; gap: 16px; }
+/* Botón sólido invertido (blanco con ícono grey-950 en oscuro), de 50×50 como antes. */
+.s-carousel-arrow {
+  display: grid; place-items: center; padding: 13px;
+  border: 0; border-radius: 2px;
+  background: var(--inverse-bg); color: var(--inverse-fg);
+  cursor: pointer;
+  /* Hover: el mismo barrido de izquierda a derecha que los botones (ver .s-btn::before). */
+  position: relative; isolation: isolate; overflow: hidden; --btn-fill: var(--inverse-bg-hover);
+}
+.s-carousel-arrow:focus-visible { outline-color: var(--fg-strong); }
+
+@media (min-width: 768px) {
+  .s-testimonials { padding-block: 80px; }
+  .s-testimonial { padding: 32px; }
+  .s-carousel { gap: 48px; }
+}
+@media (min-width: 1024px) {
+  .s-testimonials { padding-block: 112px; }
+  .s-testimonials-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-testimonial { transition: none; }
+}
+
+/* CTA final (Figma: Asilo Core): título centrado y el botón al formulario. */
+.s-cta { position: relative; isolation: isolate; overflow: hidden; padding: 64px var(--page-gutter); }
+/* Fondo del CTA: la grilla de puntos interactiva (servicios-dot-grid.ts): donde pasa el mouse (o el cursor fantasma,
+   que orbita alrededor del texto) los puntos se estiran en líneas azules que se apagan como una estela; alrededor del
+   título y el botón no hay líneas. Se desvanece arriba y abajo para no cortarse en seco. */
+.s-cta-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.s-cta-bg {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+}
+/* El script lee estos colores: puntos grises, líneas del azul de marca (borde del efecto) al azul claro (centro). */
+.s-cta-dots {
+  --dot-color: var(--color-grey-600);
+  --line-from: var(--color-blue-500);
+  --line-to: var(--color-blue-200);
+  position: absolute; inset: 0; display: block; width: 100%; height: 100%;
+}
+.s-cta-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 32px;
+  max-width: 768px; margin-inline: auto; text-align: center;
+}
+.s-cta-text { display: flex; flex-direction: column; gap: 24px; }
+.s-cta-lead { color: var(--fg-strong); text-wrap: pretty; }
+@media (min-width: 768px) {
+  .s-cta { padding-block: 80px; }
+}
+@media (min-width: 1024px) {
+  .s-cta { padding-block: 112px; }
+}
+
+/* Footer (Figma 91:7543): logo y redes arriba, línea del color del texto y créditos centrados abajo. */
+.s-footer { padding: 0 var(--page-gutter); overflow: clip; }
+/* El espacio superior va en el contenido y no en el footer: así el brillo sticky puede pegarse al borde de la
+   pantalla desde que asoma el primer píxel del footer. */
+.s-footer-inner { display: flex; flex-direction: column; gap: 64px; max-width: 1312px; margin-inline: auto; padding-top: 64px; }
+/* En móvil las redes van debajo de la frase (cinco íconos no caben junto al logo); desde 768px, a la derecha. */
+.s-footer-top { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; }
+/* Logo con la frase debajo (Title/H5); las redes quedan alineadas con el logo. */
+.s-footer-brand { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.s-footer-tagline { color: var(--fg-strong); text-wrap: balance; }
+.s-footer-logo { display: inline-flex; align-items: center; min-height: 36px; text-decoration: none; }
+.s-footer-social { display: flex; margin-left: -6px; } /* en móvil el primer ícono queda al ras del margen */
+/* Ícono de 24px con 6px de aire por lado: 12px entre íconos, como en Figma, y un área de toque de 36px. */
+.s-footer-social a { display: grid; place-items: center; padding: 6px; border-radius: 2px; color: var(--fg-strong); transition: opacity 160ms ease; }
+.s-footer-social a:hover { opacity: 0.7; }
+.s-footer-credits {
+  /* Alineados a la izquierda, 8px más cerca de la línea (grey-800 en oscuro) y en el gris de los párrafos. */
+  display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 8px 24px;
+  padding-top: 24px; border-top: 1px solid var(--border-subtle);
+  color: var(--fg-body); text-align: left;
+}
+.s-footer-legal { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 8px 24px; }
+.s-footer-legal a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* El footer cierra la página: sin brillo ni espacio reservado debajo, solo los 40px de aire inferior de Figma. */
+.s-footer-inner { position: relative; padding-bottom: 40px; }
+
+@media (min-width: 768px) {
+  .s-footer-top { flex-direction: row; justify-content: space-between; }
+  /* El último ícono queda al ras del margen derecho, como en Figma. */
+  .s-footer-social { margin-left: 0; margin-right: -6px; }
+  .s-footer-inner { gap: 80px; padding-top: 80px; }
+}
+
+.s-skip {
+  position: absolute; left: 16px; top: -100px; z-index: 100;
+  padding: 8px 12px; border-radius: 6px;
+  background: var(--fg-strong); color: var(--surface-page);
+  font-size: 14px; text-decoration: none;
+}
+.s-skip:focus { top: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(body.servicios) { scroll-behavior: auto; }
+}
+
+/* ==========================================================================
+   Movimiento. Todo se apaga con prefers-reduced-motion (ver el bloque al final).
+   ========================================================================== */
+
+/* Entrada del hero: el nav baja y el título sube línea por línea, seguido de la bajada. */
+@keyframes s-hero-in {
+  from { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes s-nav-in {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: none; }
+}
+.s-nav { animation: s-nav-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.s-hero-title-line { animation: s-hero-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.s-hero-title-line:nth-child(2) { animation-delay: 140ms; }
+.s-hero-lead { animation: s-hero-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 300ms both; }
+
+/* Revelado al hacer scroll (servicios-reveal.ts): solo se oculta cuando el script marcó <html> con .s-js. */
+[data-reveal] {
+  transition:
+    opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--reveal-i, 0) * 90ms),
+    transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--reveal-i, 0) * 90ms),
+    border-color 200ms ease, background-color 200ms ease;
+}
+.s-js [data-reveal]:not(.is-in) { opacity: 0; transform: translateY(28px); }
+/* Tarjetas de proyectos: la misma entrada, un poco más lenta (1s en vez de 0,7s). */
+.s-project[data-reveal] {
+  transition:
+    opacity 1000ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--reveal-i, 0) * 90ms),
+    transform 1000ms cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--reveal-i, 0) * 90ms);
+}
+
+/* Tarjetas de "El problema": el borde se aclara y la grilla del decorador se enciende al pasar el mouse. */
+.s-card-decorator-grid { transition: opacity 300ms ease; }
+.s-card-decorator-icon { transition: transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+/* El anillo azul de Proyectos (ver .s-project-media::after) va justo sobre el borde de 1px de la tarjeta. */
+/* En el medio de los costados el borde no desaparece del todo: queda un tinte azul al 20 % para que se lea continuo. */
+.s-card--feature { position: relative; --ring-mid: color-mix(in srgb, var(--color-blue-500) 20%, transparent); }
+.s-card--feature::after { inset: -1px; }
+@media (hover: hover) {
+  /* El borde gris se vuelve transparente y aparece el anillo azul: el medio de los costados queda sin borde. */
+  .s-card--feature:hover { border-color: transparent; }
+  .s-card--feature:hover::after { opacity: 1; }
+  .s-card--feature:hover .s-card-decorator-grid { opacity: 0.22; }
+  .s-card--feature:hover .s-card-decorator-icon { transform: scale(1.1); }
+}
+/* Íconos que se dibujan solos (servicios-icon-draw.ts): cada trazo mide 1 (pathLength) y se traza con
+   stroke-dashoffset, uno tras otro. Al aparecer la tarjeta, con el escalonado de su entrada; en hover, en el momento. */
+.s-card-decorator-icon svg > * { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.s-card-decorator-icon svg > :nth-child(2) { --part: 1; }
+.s-card-decorator-icon svg > :nth-child(3) { --part: 2; }
+.s-card-decorator-icon svg > :nth-child(4) { --part: 3; }
+.s-card-decorator-icon.is-drawing svg > * {
+  animation: s-icon-draw 800ms cubic-bezier(0.65, 0, 0.35, 1) both;
+  animation-delay: calc(var(--draw-delay, 0ms) + var(--part, 0) * 120ms);
+}
+.s-card-decorator-icon.is-first-draw { --draw-delay: calc(var(--reveal-i, 0) * 90ms + 250ms); }
+/* Antes de aparecer (solo con el revelado activo) el ícono está sin dibujar, para que no se vea completo y luego se borre. */
+.s-js [data-icon-draw] .s-card-decorator-icon:not(.is-drawing) svg > * { stroke-dashoffset: 1; opacity: 0; }
+/* Invisible hasta que empieza su trazo: con puntas redondeadas, un trazo de largo 0 igual dejaría un puntito. */
+@keyframes s-icon-draw {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  1% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .s-card-decorator-icon.is-drawing svg > * { animation: none; }
+}
+
+/* Pasos de "Cómo trabajamos": la línea se dibuja de izquierda a derecha y los cuadrados aparecen en orden. */
+@media (min-width: 768px) {
+  .s-steps::before { transform-origin: left center; transition: transform 1100ms cubic-bezier(0.4, 0, 0.2, 1) 150ms; }
+  .s-js .s-steps:not(.is-in)::before { transform: scaleX(0); }
+}
+
+/* Destello: cuando la línea termina de dibujarse, una luz azul muy suave la recorre una vez de punta a punta, de
+   izquierda a derecha, y se apaga al llegar al final de la línea. Pasa por detrás de los cuadrados (que tapan la
+   línea) y el borde de cada uno se enciende en azul justo cuando la luz lo cruza. Solo en tablet y escritorio, donde
+   está la línea; con prefers-reduced-motion o colores forzados no aparece. */
+@media (min-width: 768px) {
+  /* Al final, la mitad de la luz sale del contenedor: se recorta a lo ancho para que no aparezca scroll horizontal. */
+  .s-process { overflow-x: clip; }
+  .s-steps {
+    /* 2,15s para todo el largo: la misma velocidad que tenía cuando terminaba en el tercer cuadrado. */
+    --flash-start: 1300ms; --flash-dur: 2150ms;
+    --flash-end: 100%;
+  }
+  .s-steps::after {
+    content: ""; position: absolute; top: 24px; left: 0; width: 160px; height: 1px; pointer-events: none;
+    background: linear-gradient(90deg, transparent, var(--color-blue-500) 35%, var(--color-blue-300) 50%, var(--color-blue-500) 65%, transparent);
+    filter: drop-shadow(0 0 4px var(--color-blue-500));
+    transform: translateX(-50%); opacity: 0;
+  }
+  .s-steps.is-in::after { animation: s-steps-flash var(--flash-dur) linear var(--flash-start) both; }
+  /* Momento en que la luz cruza cada cuadrado, como fracción del recorrido: los centros de las 3 columnas (con 24px
+     entre ellas) quedan al 16 %, 50 % y 84 % del largo de la línea. */
+  .s-step:nth-child(1) { --flash-at: 0.16; }
+  .s-step:nth-child(2) { --flash-at: 0.5; }
+  .s-step:nth-child(3) { --flash-at: 0.84; }
+  /* El brillo del borde llega a su punto máximo (25 % de 900ms) justo cuando la luz pasa por el cuadrado. */
+  .s-steps.is-in .s-step-number {
+    animation: s-step-flash 900ms ease-out calc(var(--flash-start) + var(--flash-dur) * var(--flash-at) - 225ms) both;
+  }
+}
+@keyframes s-steps-flash {
+  0% { left: 0; opacity: 0; }
+  8% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: var(--flash-end); opacity: 0; }
+}
+@keyframes s-step-flash {
+  0%, 100% { border-color: var(--border-subtle); box-shadow: none; }
+  25% {
+    border-color: color-mix(in oklab, var(--color-blue-400) 70%, var(--border-subtle));
+    box-shadow: 0 0 12px color-mix(in oklab, var(--color-blue-500) 35%, transparent);
+  }
+}
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .s-steps::after { display: none; }
+  .s-steps.is-in .s-step-number { animation: none; }
+}
+.s-step-number { transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--i, 0) * 180ms + 300ms), opacity 400ms ease calc(var(--i, 0) * 180ms + 300ms); }
+.s-js .s-steps:not(.is-in) .s-step-number { transform: scale(0.4); opacity: 0; }
+/* Los pasos no se revelan por separado (la lista entera ya lo hace), así que el texto sigue a su círculo. */
+.s-step .s-card-text { transition: opacity 600ms ease calc(var(--i, 0) * 180ms + 450ms), transform 600ms ease calc(var(--i, 0) * 180ms + 450ms); }
+.s-js .s-steps:not(.is-in) .s-step .s-card-text { opacity: 0; transform: translateY(12px); }
+
+/* Panel de servicios: el contenido nuevo aparece suavemente al cambiar de pestaña. */
+@keyframes s-panel-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+.s-services-panel:not([hidden]) { animation: s-panel-in 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* Botones: no se mueven al pasar el mouse (el hover es el barrido de color); solo se hunden un poco al presionar. */
+.s-btn { transition: transform 200ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.s-btn:active { transform: scale(0.97); }
+
+@media (prefers-reduced-motion: reduce) {
+  .s-nav, .s-hero-title-line, .s-hero-lead, .s-services-panel:not([hidden]) { animation: none; }
+  [data-reveal], .s-project[data-reveal], .s-step-number, .s-step .s-card-text, .s-steps::before, .s-btn, .s-card-decorator-grid, .s-card-decorator-icon { transition: none; }
+  .s-btn:active, .s-card--feature:hover .s-card-decorator-icon { transform: none; }
+  /* Sin barrido: el color del hover aparece de una vez. */
+  .s-btn::before, .s-carousel-arrow::before { transition: none; }
+}
+
+/* ==========================================================================
+   Tamaños del Figma (Asilo Core, nodo 8951:3082): todo en Switzer. Va al final para ganar sobre las reglas anteriores.
+   ========================================================================== */
+.s-problem .s-section-lead, .s-process .s-section-lead, .s-projects .s-section-lead { font-size: 1.125rem; line-height: 1.5; }
+.s-services-tab { font-size: 1.125rem; line-height: 1.5; }
+.s-services-panel-title { font-size: 2rem; line-height: 1.3; }
+.s-services-panel-body { font-size: 1rem; font-weight: 400; line-height: 1.5; }
+.s-services-list { font-size: 0.9375rem; line-height: 1.5; }
+/* Textos de las tarjetas de El problema, los pasos de Cómo trabajamos y la descripción de cada proyecto: 15px. */
+.s-card-body, .s-project-description { font-size: 0.9375rem; line-height: 1.5; }
+.s-tag { font-size: 0.75rem; line-height: 1.5; }
+.s-testimonial-quote { font-size: 1.125rem; font-weight: 400; line-height: 1.5; }
+.s-cta .s-section-title { font-size: 2.625rem; line-height: 1.2; }
+.s-footer-tagline { font-size: 1rem; line-height: 1.35; max-width: 280px; }
+
+/* ==========================================================================
+   Medidas del Figma v3 (Asilo Core, nodo 8951:3082): radios, bordes, colores, espaciados y alturas.
+   Va al final para ganar sobre las reglas anteriores.
+   ========================================================================== */
+/* v4: la única línea divisoria es la del final del hero (1px, grey-900); las demás secciones y el footer van sin ella. */
+.s-hero { border-bottom: 1px solid var(--color-grey-900); }
+
+/* Encabezados: título y bajada a 16px (en Servicios, a 4px), bajadas con el ancho de Figma y saltos sin equilibrar. */
+.s-section-head { max-width: 776px; }
+.s-section-head-text { gap: 16px; }
+.s-services .s-section-head-text { gap: 4px; }
+.s-services .s-section-lead { line-height: 28px; }
+.s-section-lead { text-wrap: wrap; }
+/* 776px, como Cómo trabajamos: a 18px la bajada de El problema (unos 1480px en una línea) entra en dos líneas desde
+   1024px; en tablet (720px de ancho útil) ocupa tres. */
+.s-problem .s-section-lead { max-width: 776px; margin-inline: auto; }
+.s-process .s-section-lead { max-width: 776px; margin-inline: auto; }
+/* 720px: a 18px la bajada de Proyectos cabe en una línea (con 640px "Venezuela." quedaba sola abajo). */
+.s-projects .s-section-lead { max-width: 720px; margin-inline: auto; }
+/* En móvil las bajadas de El problema, Nuestros servicios, Cómo trabajamos y Proyectos bajan a 16px (en tablet y
+   escritorio siguen en 18px). */
+@media (max-width: 767px) {
+  .s-problem .s-section-lead, .s-services .s-section-lead, .s-process .s-section-lead, .s-projects .s-section-lead {
+    font-size: 1rem; line-height: 1.5;
+  }
+}
+/* En Figma, "Tu app crece…" va en peso 400 y el resto de los títulos en 500. */
+.s-problem .s-section-title { font-weight: 400; }
+
+/* Tarjetas de "El problema": radio 12, fondo grey-950, título de 34px de alto y bajada en grey-400 sin tracking. */
+.s-card { border-radius: 12px; background: var(--color-grey-950); }
+.s-card--feature .s-card-title { line-height: 34px; }
+.s-card-body { color: var(--fg-muted); letter-spacing: 0; text-wrap: wrap; }
+.s-card-title { text-wrap: wrap; }
+
+/* Cómo trabajamos: número de 12px en peso 500 y grey-400 dentro de un cuadrado de 48px con radio 2; 24px entre columnas. */
+.s-step-number { font-weight: 500; color: var(--fg-muted); }
+.s-step .s-card-title { line-height: 34px; }
+@media (min-width: 768px) {
+  .s-steps { gap: 24px; }
+}
+
+/* Servicios: radio 12, pestañas de 380px en grey-500 (estilo Label/Large a 20px), panel de 520px con 72px a los lados. */
+.s-services-card { border-radius: 12px; }
+.s-services-tab { font: var(--text-label-lg); font-size: 1.25rem; letter-spacing: var(--text-label-lg-tracking); color: var(--color-grey-500); }
+.s-services-tab-arrow { color: var(--color-grey-400); opacity: 0.4; }
+.s-services-panel-body { letter-spacing: -0.006em; max-width: 600px; }
+.s-services-list { gap: 8px; padding-left: 0; list-style: none; letter-spacing: 0; }
+.s-services-list li::before { content: "•\00a0\00a0"; content: "•\00a0\00a0" / ""; }
+.s-services-price { margin-top: 0; padding-top: 0; }
+/* La aclaración queda pegada al precio (8px en vez de los 20px del panel) y en grey-400. */
+/* Botón "Me interesa" de cada servicio: al formulario de contacto, alineado a la izquierda bajo el precio. */
+.s-services-cta { align-self: flex-start; margin-top: 4px; }
+.s-services-price-note { margin-top: -12px; max-width: 600px; color: var(--fg-muted); letter-spacing: 0; }
+@media (min-width: 1024px) {
+  .s-services-card { min-height: 520px; }
+  .s-services-tabs { flex: none; width: 380px; max-width: none; }
+  .s-services-panels { flex: 1 1 0; }
+  .s-services-tab { padding-inline: 32px; }
+  .s-services-panel { justify-content: flex-start; gap: 20px; padding: 46.5px 72px; }
+  /* 580px: "Interfaces hechas con criterio, atención" (569px) entra en la primera línea del título de Diseño UX/UI. */
+  .s-services-panel-title { font: var(--text-title-h4); line-height: 42px; letter-spacing: var(--text-title-h4-tracking); max-width: 580px; text-wrap: wrap; }
+}
+
+/* Proyectos: imagen con radio 12, textos a 6px, bajada en grey-400 y etiquetas de 26px con radio 6 y borde grey-700. */
+.s-project { gap: 16px; }
+.s-project-image { border-radius: 12px; }
+.s-project-media::after, .s-card--feature::after { border-radius: 12px; }
+.s-project-video { border-radius: 12px; }
+.s-project-text { gap: 6px; }
+.s-project-description { color: var(--fg-muted); letter-spacing: -0.006em; }
+.s-tag { padding: 3px 10px; border-color: var(--color-grey-700); border-radius: 6px; letter-spacing: 0; line-height: 18px; }
+
+/* Testimonios: tagline en grey-500; tarjeta con radio 12, 32px de aire y 40px entre bloques; logo de 24px de alto;
+   flechas con contorno de 40px; puntos de 7px. */
+.s-testimonials .s-section-tagline { color: var(--color-grey-500); }
+.s-testimonial { gap: 40px; border-radius: 12px; }
+.servicios .s-testimonial-logo { height: 24px; max-width: none; margin-bottom: 0; }
+.s-testimonial-author { gap: 14px; }
+.s-testimonial-avatar { width: 48px; height: 48px; }
+.s-testimonial-name { font-size: 0.875rem; line-height: 1.5; letter-spacing: 0; }
+.s-testimonial-role { font-size: 0.875rem; line-height: 1.5; letter-spacing: 0; color: var(--fg-muted); }
+.s-carousel { gap: 32px; }
+.s-carousel-dot { width: 15px; }
+.s-carousel-dot::before { width: 7px; height: 7px; }
+.s-carousel-arrows { gap: 8px; }
+.s-carousel-arrow {
+  width: 40px; height: 40px; padding: 0; border: 1px solid var(--fg-strong); border-radius: 6px;
+  background: transparent; color: var(--fg-strong);
+}
+.s-carousel-arrow { --btn-fill: rgb(255 255 255 / 0.1); }
+.s-carousel-arrow .s-icon { width: 20px; height: 20px; }
+@media (min-width: 1024px) {
+  .s-testimonials-inner { grid-template-columns: minmax(0, 1fr) 640px; gap: 64px; align-items: start; }
+  .s-testimonials .s-section-head { padding-top: 24px; }
+}
+/* Móvil y tablet: el encabezado va sobre el carrusel, centrado como el de las demás secciones (en escritorio queda a
+   la izquierda, al lado del carrusel). */
+@media (max-width: 1023px) {
+  .s-testimonials .s-section-head--start { align-items: center; margin-inline: auto; text-align: center; }
+}
+
+/* CTA: título de 42px con 48px de alto de línea. */
+.s-cta .s-section-title { line-height: 48px; }
+/* En móvil el título del CTA final baja a 32px (alto de línea 40px). */
+@media (max-width: 767px) {
+  .s-cta .s-section-title { font-size: 2rem; line-height: 40px; }
+}
+
+/* Footer: tagline en grey-300, créditos en grey-500, íconos a 20px entre sí, logo sin alto mínimo. */
+.s-footer-tagline { color: var(--fg-body); }
+.s-footer-brand { gap: 14px; }
+.s-footer-logo { min-height: 0; }
+.s-footer-social { gap: 8px; }
+.s-footer-credits { color: var(--color-grey-500); }
+
+/* Títulos de sección de 48px con 58px de alto de línea (Figma). */
+@media (min-width: 768px) {
+  .s-section-title { line-height: 58px; }
+  .s-footer-social { margin-top: -6px; }
+}
+
+/* Secciones de escritorio: 96px arriba y abajo (120px en El problema, 128px en el CTA) y 56px entre encabezado y
+   contenido. */
+@media (min-width: 1024px) {
+  .s-services, .s-process, .s-projects, .s-testimonials { padding-block: 96px; }
+  .s-problem { padding-block: 120px; }
+  .s-cta { padding-block: 128px; }
+  .s-problem-inner, .s-process-inner, .s-services-inner, .s-projects-inner { gap: 56px; }
+  .s-footer-inner { gap: 48px; padding-top: 56px; }
+}
+
+/* Móvil (< 768px): los enlaces van en un menú burger. El botón de 44×44 queda a la derecha del logo y el panel se
+   despliega bajo el nav, con enlaces apilados de 52px de alto. Sin JS (sin la clase s-menu-js) el botón no aparece y
+   el panel queda a la vista bajo el logo. */
+.s-nav-toggle { display: none; }
+@media (max-width: 767px) {
+  .s-menu-js .s-nav-toggle {
+    display: inline-flex; align-items: center; justify-content: center; justify-self: end;
+    width: 44px; height: 44px; margin-right: -10px; padding: 0; border: 0; border-radius: 6px;
+    background: none; color: var(--fg-strong); cursor: pointer;
+  }
+  .s-nav-toggle-bars { position: relative; display: block; width: 20px; height: 14px; }
+  .s-nav-toggle-bars span {
+    position: absolute; left: 0; width: 100%; height: 2px; border-radius: 1px; background: currentColor;
+    transition: transform 250ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 150ms ease, top 250ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .s-nav-toggle-bars span:nth-child(1) { top: 0; }
+  .s-nav-toggle-bars span:nth-child(2) { top: 6px; }
+  .s-nav-toggle-bars span:nth-child(3) { top: 12px; }
+  [data-open] .s-nav-toggle-bars span:nth-child(1) { top: 6px; transform: rotate(45deg); }
+  [data-open] .s-nav-toggle-bars span:nth-child(2) { opacity: 0; }
+  [data-open] .s-nav-toggle-bars span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+
+  .s-nav-inner { grid-template-columns: minmax(0, 1fr) auto; }
+  .s-nav-menu {
+    display: block; position: absolute; top: 100%; left: 0; right: 0;
+    padding: 4px var(--page-gutter) 12px;
+    background: var(--surface-page); border-bottom: 1px solid var(--border-subtle);
+  }
+  .s-menu-js .s-nav:not([data-open]) .s-nav-menu { display: none; }
+  /* Menú abierto: la franja del logo deja el vidrio translúcido y queda negra sólida, igual que el panel, sin el
+     desvanecido de abajo; así no se ve el fondo de la página entre el nav y los enlaces. */
+  .s-nav[data-open]::before {
+    inset: 0; background: var(--surface-page);
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    -webkit-mask-image: none; mask-image: none;
+  }
+  .s-nav-links { flex-direction: column; gap: 0; }
+  .s-nav-links li + li { border-top: 1px solid var(--color-grey-900); }
+  .s-nav-links a { width: 100%; min-height: 52px; font-size: 1rem; }
+  /* En el menú, "Contacto" cierra la lista como botón azul de ancho completo, sin la línea divisoria de arriba. */
+  .s-nav-links { align-items: stretch; }
+  .s-nav-links li.s-nav-links-cta { border-top: 0; padding-top: 12px; }
+  .s-nav-links .s-nav-cta, .s-nav-links .s-nav-cta:hover { min-height: 48px; }
+  /* Al saltar a una sección desde el menú, el título queda debajo del nav (72px) y no tapado. */
+  .servicios main > section[id] { scroll-margin-top: 8px; }
+}
+
+/* Áreas táctiles de al menos 24px (WCAG 2.2): puntos del carrusel de 24×24 en móvil y pantallas táctiles, y el logo
+   del footer con 3px de área extra arriba y abajo sin mover nada. */
+@media (max-width: 767px), (pointer: coarse) {
+  .s-carousel-dot { width: 24px; }
+  .s-carousel-dots { margin-left: -8px; }
+}
+.s-footer-logo { padding-block: 3px; margin-block: -3px; }

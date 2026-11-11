@@ -1,0 +1,59 @@
+---
+// Hero de la landing de servicios v3 (Figma: Asilo Core, nodo 8951:3083).
+import { clientLogos, hero } from "../../data/servicios";
+
+// La franja se repite cuatro veces y se desplaza la mitad de su ancho en bucle: así no queda un hueco
+// ni en pantallas anchas. Solo la primera copia se anuncia; las demás son decorativas.
+const copies = [0, 1, 2, 3];
+---
+<section class="s-hero" id="inicio" aria-labelledby="hero-title">
+  <!-- Fondo (de la v2): grilla de píxeles que aparece en onda desde el centro, con viñeta (adaptado de "pixel-perfect-hero"). -->
+  <div class="s-hero-bg" aria-hidden="true">
+    <canvas class="s-hero-pixels" data-hero-pixels></canvas>
+    <div class="s-hero-vignette"></div>
+  </div>
+  <div class="s-hero-inner">
+    <div class="s-hero-text">
+      <h1 class="s-hero-title" id="hero-title">
+        {
+          hero.titleLines.map((line, i) => {
+            // El punto final va un peso más arriba (600), como en Figma.
+            const dot = line.endsWith(".");
+            return (
+              <span class="s-hero-title-line">
+                {i > 0 && " "}
+                {dot ? line.slice(0, -1) : line}
+                {dot && <span class="s-hero-title-dot">.</span>}
+              </span>
+            );
+          })
+        }
+      </h1>
+      <p class="s-hero-lead s-paragraph-lg">
+        {hero.subtitleLines.map((line) => <span class="s-hero-lead-line">{line}</span>)}
+      </p>
+    </div>
+  </div>
+  <div class="s-logos">
+    <!-- --logos-count ajusta la duración de la vuelta para mantener unos 33px por segundo. -->
+    <div class="s-logos-track" style={`--logos-count: ${clientLogos.length}`}>
+      {
+        copies.map((copy) => (
+          <ul class="s-logos-set" aria-label={copy === 0 ? "Clientes" : undefined} aria-hidden={copy === 0 ? undefined : "true"}>
+            {clientLogos.map((logo) => (
+              <li class="s-logos-item">
+                <img src={logo.src} alt={copy === 0 ? logo.alt : ""} width={logo.width} height={logo.height} style={`--logo-scale: ${logo.scale}`} loading="lazy" decoding="async" />
+              </li>
+            ))}
+          </ul>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initPixels } from "../../scripts/servicios-pixels";
+
+  document.querySelectorAll<HTMLCanvasElement>("[data-hero-pixels]").forEach(initPixels);
+</script>

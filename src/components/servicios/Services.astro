@@ -1,0 +1,69 @@
+---
+import { CTA_HREF, serviceTabs, servicesSection } from "../../data/servicios";
+import SectionHead from "./SectionHead.astro";
+---
+
+<section class="s-services s-services--v3" id="servicios" aria-labelledby="servicios-title">
+  <div class="s-services-inner">
+    <SectionHead
+      title={servicesSection.titleLines}
+      subtitle={servicesSection.subtitle}
+      titleId="servicios-title"
+    />
+
+    <div class="s-services-card" data-tabs data-reveal>
+      <div class="s-services-tabs" role="tablist" aria-label="Servicios" aria-orientation="vertical">
+        {
+          serviceTabs.map((tab, i) => (
+            <button
+              class="s-services-tab"
+              type="button"
+              role="tab"
+              id={`servicio-tab-${tab.id}`}
+              aria-controls={`servicio-${tab.id}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              tabindex={i === 0 ? 0 : -1}
+            >
+              <span>{tab.label}</span>
+              <span class="s-icon s-services-tab-arrow" style="--icon: url(/servicios/icons/arrow-forward.svg)"></span>
+            </button>
+          ))
+        }
+      </div>
+      <div class="s-services-panels">
+        {
+          serviceTabs.map((tab, i) => (
+            <div
+              class="s-services-panel"
+              role="tabpanel"
+              id={`servicio-${tab.id}`}
+              aria-labelledby={`servicio-tab-${tab.id}`}
+              tabindex="0"
+              hidden={i !== 0}
+            >
+              <h3 class="s-services-panel-title">{tab.title}</h3>
+              <p class="s-services-panel-body s-label-md">{tab.body}</p>
+              <ul class="s-services-list s-paragraph-md">
+                {tab.items.map((item) => <li>{item}</li>)}
+              </ul>
+              {tab.price && <p class="s-services-price s-label-lg">{tab.price}</p>}
+              {tab.priceNote && <p class="s-services-price-note s-paragraph-sm">{tab.priceNote}</p>}
+              <a class="s-services-cta s-btn s-btn--primary s-label-md" href={CTA_HREF} aria-label={`Me interesa: ${tab.label}`}>Me interesa</a>
+            </div>
+          ))
+        }
+      </div>
+      <!-- Haz de luz que recorre el borde y se ve solo a la derecha (adaptado de "border-beam"). -->
+      <div class="s-services-beam" aria-hidden="true">
+        <span class="s-services-beam-glow"><span class="s-services-beam-ring s-services-beam-ring--wide"></span></span>
+        <span class="s-services-beam-ring"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initTabs } from "../../scripts/servicios-tabs";
+
+  document.querySelectorAll<HTMLElement>("[data-tabs]").forEach(initTabs);
+</script>

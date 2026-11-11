@@ -1,0 +1,9 @@
+/* Switzer (Indian Type Foundry, Fontshare Free Font License): fuente de la landing (Figma: Asilo Core).
+   Variable (peso 100–900), recortada a latín; solo el .woff2 web, sin archivos de escritorio en el repo. */
+@font-face {
+  font-family: "Switzer";
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/switzer-variable.woff2") format("woff2");
+}

@@ -1,0 +1,24 @@
+---
+import { CTA_HREF, finalCta } from "../../data/servicios";
+---
+
+<section class="s-cta" id="contacto" aria-labelledby="contacto-title">
+  <!-- Fondo: grilla de puntos que se convierte en líneas donde pasa el mouse o el cursor fantasma (servicios-dot-grid.ts). -->
+  <div class="s-cta-bg" aria-hidden="true">
+    <canvas class="s-cta-dots" data-cta-dots></canvas>
+  </div>
+  <div class="s-cta-inner" data-reveal>
+    <div class="s-cta-text">
+      <h2 class="s-section-title" id="contacto-title">
+        {finalCta.titleLines.map((line, i) => <span class="s-section-title-line">{i > 0 && " "}{line}</span>)}
+      </h2>
+    </div>
+    <a class="s-btn s-btn--lg s-btn--primary s-label-md" href={CTA_HREF}>{finalCta.ctaLabel}</a>
+  </div>
+</section>
+
+<script>
+  import { initDotGrid } from "../../scripts/servicios-dot-grid";
+
+  document.querySelectorAll<HTMLCanvasElement>("[data-cta-dots]").forEach(initDotGrid);
+</script>

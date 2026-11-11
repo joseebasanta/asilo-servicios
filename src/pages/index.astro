@@ -1,0 +1,62 @@
+---
+// Landing de servicios de Asilo Digital. Se construye sección por sección desde Figma:
+// cada sección es un componente en src/components/servicios/ montado dentro de <main>.
+import "../styles/fonts.css";
+import "../styles/servicios.css";
+import SeoHead from "../components/SeoHead.astro";
+import Nav from "../components/servicios/Nav.astro";
+import Hero from "../components/servicios/Hero.astro";
+import Problem from "../components/servicios/Problem.astro";
+import Process from "../components/servicios/Process.astro";
+import Projects from "../components/servicios/Projects.astro";
+import Services from "../components/servicios/Services.astro";
+import Testimonials from "../components/servicios/Testimonials.astro";
+import FinalCta from "../components/servicios/FinalCta.astro";
+import Footer from "../components/servicios/Footer.astro";
+import { seo } from "../data/servicios";
+import { siteUrl as getSiteUrl } from "../site-url.mjs";
+
+// La página vive en la raíz del sitio; el dominio sale de src/site-url.mjs (Vercel o local).
+const siteUrl = getSiteUrl();
+const canonical = `${siteUrl}/`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f0f0f" />
+    <SeoHead
+      title={seo.title}
+      description={seo.description}
+      canonical={canonical}
+      image={`${siteUrl}/og-servicios.png`}
+      siteName="Asilo Digital"
+    />
+    <link rel="icon" href="/favicon.svg?v=20260911" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/switzer-variable.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body class="servicios">
+    <a class="s-skip" href="#contenido">Saltar al contenido</a>
+    <Nav />
+    <main id="contenido">
+      <Hero />
+      <Problem />
+      <Services />
+      <Process />
+      <Projects />
+      <Testimonials />
+      <FinalCta />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<script>
+  import { initReveal } from "../scripts/servicios-reveal";
+  import { initProjectVideos } from "../scripts/servicios-project-video";
+
+  initReveal();
+  initProjectVideos();
+</script>
