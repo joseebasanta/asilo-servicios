@@ -12,7 +12,7 @@ export const CTA_LABEL = "Contáctanos";
 
 // El CTA principal lleva al formulario de contacto en Notion: el equipo revisa cada lead y luego confirma
 // cómo contactarlo.
-export const CTA_HREF = "https://shorthaired-raft-3f2.notion.site/c78219767f6a48deb87242f4c99989a6";
+export const CTA_HREF = "https://broad-question-f72.notion.site/f1028df53a75838eaede01e160d23a69";
 
 export interface NavLink {
   label: string;

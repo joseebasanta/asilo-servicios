@@ -168,7 +168,7 @@ describe("landing de servicios v3", () => {
     expect(nav).not.toContain("s-nav-actions");
     // El "Contáctanos" del cierre lleva al formulario de contacto en Notion.
     expect(CTA_LABEL).toBe("Contáctanos");
-    expect(CTA_HREF).toBe("https://shorthaired-raft-3f2.notion.site/c78219767f6a48deb87242f4c99989a6");
+    expect(CTA_HREF).toBe("https://broad-question-f72.notion.site/f1028df53a75838eaede01e160d23a69");
     // El cierre y el botón "Me interesa" de cada servicio (3) llevan al formulario: 4 en total.
     expect(html.match(new RegExp(`href="${CTA_HREF}"`, "g"))).toHaveLength(4);
     expect(html).not.toContain("wa.me");
