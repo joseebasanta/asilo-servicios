@@ -220,17 +220,19 @@ export const testimonialsSection = {
   title: "Lo que dicen los equipos con los que trabajamos.",
 };
 
-// TODO: reemplazar con testimonios reales (con permiso): cita, nombre, cargo y empresa, foto y logo.
-// Son tres testimonios; el número de puntos del slider sale de esta lista (en Figma hay seis puntos).
-export const testimonials: Testimonial[] = Array.from({ length: 3 }, (_, i) => ({
-  quote:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare.",
-  name: i === 0 ? "Assunta Cipollone" : "Nombre Apellido",
-  role: i === 0 ? "Directora, Empléate.com" : "Cargo, Empresa",
-  avatar: "/servicios/testimonios/avatar-placeholder.svg",
-  // Logo de relleno como en Figma (cuadrado gris y "Cliente 0N"); se reemplaza por el de cada cliente.
-  logo: { src: `/placeholders/testimonial-logo-${i + 1}.svg`, alt: `Cliente 0${i + 1}` },
-}));
+// Por ahora hay un solo testimonio, el de Intellivia. La cita es de relleno hasta tener la real (con permiso).
+// Con un solo testimonio el carrusel no muestra puntos ni flechas; aparecen solos al agregar otro.
+// `logo` es opcional: sin logo la tarjeta empieza por la cita.
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare.",
+    name: "José Alejandro Rivero",
+    role: "Socio Fundador de Intellivia",
+    avatar: "/servicios/testimonios/jose-alejandro-rivero.webp",
+  },
+];
+
 
 // CTA final (Figma: Asilo Core). El botón lleva al formulario (CTA_HREF).
 export const finalCta = {

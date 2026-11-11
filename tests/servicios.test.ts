@@ -323,27 +323,34 @@ describe("landing de servicios v3", () => {
     }
   });
 
-  it("renders the testimonials carousel with one visible card, a dot per card and both arrows", async () => {
+  it("renders the single testimonial (José Alejandro Rivero) without logo, dots or arrows", async () => {
     const html = await render();
     const start = html.indexOf('<section class="s-testimonials"');
     const section = html.slice(start, html.indexOf("</section>", start));
     const total = testimonials.length;
-    // Son tres testimonios, con tres puntos.
-    expect(total).toBe(3);
+    // Por ahora un solo testimonio: el de José Alejandro Rivero, Socio Fundador de Intellivia, sin logo ni "Cliente 01".
+    expect(total).toBe(1);
+    expect(testimonials[0].name).toBe("José Alejandro Rivero");
+    expect(testimonials[0].role).toBe("Socio Fundador de Intellivia");
+    expect(testimonials[0].logo).toBeUndefined();
+    expect(section).not.toContain("s-testimonial-logo");
+    expect(section).not.toContain("Cliente 0");
 
     expect(section).toContain('id="testimonios"');
     expect(section).toContain('class="s-section-head s-section-head--start"');
     expect(section).toContain(`id="testimonios-title">${testimonialsSection.title}</h2>`);
     expect(section).not.toContain("s-section-lead");
     expect(section.match(/data-slide/g)).toHaveLength(total);
-    expect(section.match(/data-slide hidden/g)).toHaveLength(total - 1);
+    expect(section).not.toContain("data-slide hidden");
     expect(section).toContain(`aria-label="1 de ${total}"`);
-    expect(section.match(/data-dot/g)).toHaveLength(total);
-    expect(section.match(/aria-current="true"/g)).toHaveLength(1);
-    expect(section).toContain('aria-label="Testimonio anterior"');
-    expect(section).toContain('aria-label="Siguiente testimonio"');
-    // Flechas con contorno blanco de 40px y radio 6, con chevrones de 20px (Figma); el ícono es una máscara sobre el SVG.
-    expect(section).toContain('<span class="s-icon" style="--icon: url(/servicios/icons/chevron-right.svg)"></span>');
+    // Con un solo testimonio no hay puntos ni flechas; aparecen solos al agregar otro.
+    expect(section).not.toContain("data-dot");
+    expect(section).not.toContain("data-prev");
+    expect(section).not.toContain("data-next");
+    expect(section).not.toContain("s-carousel-controls");
+    const source = readFileSync(new URL("../src/components/servicios/Testimonials.astro", import.meta.url), "utf8");
+    expect(source).toContain("total > 1 &&");
+    expect(source).toContain("/servicios/icons/chevron-right.svg");
     const arrowCss = readFileSync(new URL("../src/styles/servicios.css", import.meta.url), "utf8");
     // Transición cinemática con cascada (Motion): desenfoque y escala en la tarjeta, y logo, cita y autor
     // que entran escalonados.

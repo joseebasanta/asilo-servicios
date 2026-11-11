@@ -31,7 +31,7 @@ const total = testimonials.length;
                 <p>“{t.quote}”</p>
               </blockquote>
               <figcaption class="s-testimonial-author">
-                <img class="s-testimonial-avatar" src={t.avatar} alt="" width="56" height="56" loading="lazy" decoding="async" />
+                <img class="s-testimonial-avatar" src={t.avatar} alt="" width="48" height="48" loading="lazy" decoding="async" />
                 <span class="s-testimonial-meta">
                   <span class="s-testimonial-name s-label-md">{t.name}</span>
                   <span class="s-testimonial-role s-paragraph-md">{t.role}</span>
@@ -42,29 +42,33 @@ const total = testimonials.length;
         }
       </div>
 
-      <div class="s-carousel-controls">
-        <div class="s-carousel-dots">
-          {
-            testimonials.map((_, i) => (
-              <button
-                class="s-carousel-dot"
-                type="button"
-                aria-label={`Ver testimonio ${i + 1}`}
-                aria-current={i === 0 ? "true" : undefined}
-                data-dot
-              />
-            ))
-          }
+      {
+        total > 1 && (
+        <div class="s-carousel-controls">
+          <div class="s-carousel-dots">
+            {
+              testimonials.map((_, i) => (
+                <button
+                  class="s-carousel-dot"
+                  type="button"
+                  aria-label={`Ver testimonio ${i + 1}`}
+                  aria-current={i === 0 ? "true" : undefined}
+                  data-dot
+                />
+              ))
+            }
+          </div>
+          <div class="s-carousel-arrows">
+            <button class="s-carousel-arrow" type="button" aria-label="Testimonio anterior" data-prev>
+              <span class="s-icon" style="--icon: url(/servicios/icons/chevron-left.svg)"></span>
+            </button>
+            <button class="s-carousel-arrow" type="button" aria-label="Siguiente testimonio" data-next>
+              <span class="s-icon" style="--icon: url(/servicios/icons/chevron-right.svg)"></span>
+            </button>
+          </div>
         </div>
-        <div class="s-carousel-arrows">
-          <button class="s-carousel-arrow" type="button" aria-label="Testimonio anterior" data-prev>
-            <span class="s-icon" style="--icon: url(/servicios/icons/chevron-left.svg)"></span>
-          </button>
-          <button class="s-carousel-arrow" type="button" aria-label="Siguiente testimonio" data-next>
-            <span class="s-icon" style="--icon: url(/servicios/icons/chevron-right.svg)"></span>
-          </button>
-        </div>
-      </div>
+        )
+      }
     </div>
   </div>
 </section>
