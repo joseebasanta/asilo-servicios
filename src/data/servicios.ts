@@ -114,7 +114,7 @@ export const projects: Project[] = [
     name: "Tillín",
     description: "Facilitando los procesos de solicitud de servicios a través de una app móvil.",
     tags: ["App Design", "Servicios"],
-    image: { src: "/servicios/proyectos/tilin.webp", alt: "Tillín: perfil del técnico, inicio, búsqueda de profesional y pago" },
+    image: { src: "/servicios/proyectos/tilin-poster.webp", alt: "Tillín: perfil del técnico, inicio, búsqueda de profesional y pago" },
   },
   {
     name: "Empléate",
