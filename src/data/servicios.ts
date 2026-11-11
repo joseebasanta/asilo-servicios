@@ -91,16 +91,13 @@ export interface Project {
   video?: string;
 }
 
-// Proyectos: una fila de tres, con las imágenes a 2× (811×568). Intellivia y Empléate llevan un relleno con su logo hasta
-// tener las imágenes reales. Diners Club Mall App, Mattelsa, Corona App, Olímpica y Gama ya no se muestran; sus imágenes
+// Proyectos: una fila de tres, con las imágenes 4:3 (1440×1080). La de Empléate sale de la pantalla de inicio del Figma
+// "Empléate (Design System)". Diners Club Mall App, Mattelsa, Corona App, Olímpica y Gama ya no se muestran; sus imágenes
 // siguen en /public/servicios/proyectos.
 export const projectsSection = {
   titleLines: ["Productos que dan ganas de usar"],
   subtitle: "Cosas que hemos diseñado en los últimos años, y lo que queremos traer a Venezuela.",
 };
-
-// TODO: reemplazar las descripciones de relleno con una línea real por proyecto.
-const PLACEHOLDER_DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
 export const projects: Project[] = [
   {
@@ -115,16 +112,18 @@ export const projects: Project[] = [
   },
   {
     name: "Tillín",
-    description: PLACEHOLDER_DESCRIPTION,
+    description: "Facilitando los procesos de solicitud de servicios a través de una app móvil.",
     tags: ["App Design", "Servicios"],
     image: { src: "/servicios/proyectos/tilin.webp", alt: "Tillín: perfil del técnico, inicio, búsqueda de profesional y pago" },
   },
   {
     name: "Empléate",
-    description: PLACEHOLDER_DESCRIPTION,
+    description: "Escalando el producto de talento y empresas, componente a componente.",
     tags: ["Design System", "Empleo/RRHH"],
-    // TODO: reemplazar por la imagen real del proyecto (hoy es un relleno con el logo).
-    image: { src: "/servicios/proyectos/empleate.svg", alt: "Empléate (imagen pendiente)" },
+    image: {
+      src: "/servicios/proyectos/empleate-poster.webp",
+      alt: "Empléate: inicio del sitio con el título “Encuentra oportunidades que impulsen tu carrera”, el buscador de vacantes y las áreas de oportunidades",
+    },
   },
 ];
 
