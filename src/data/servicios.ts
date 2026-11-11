@@ -226,7 +226,7 @@ export const testimonialsSection = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare.",
+      "Tuvimos una experiencia altamente agradable y eficiente con Asilo Labs construyendo nuestro sitio. Los recomiendo sin dudar",
     name: "José Alejandro Rivero",
     role: "Socio Fundador de Intellivia",
     avatar: "/servicios/testimonios/jose-alejandro-rivero.webp",
