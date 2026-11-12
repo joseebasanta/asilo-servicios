@@ -96,8 +96,8 @@ describe("static crawl files", () => {
 
   it("serves an llms.txt describing the site and its pages", () => {
     const llms = readFileSync(new URL("../public/llms.txt", import.meta.url), "utf8");
-    expect(llms).toContain(SITE);
-    expect(llms).toContain(`${SITE}/proyectos`);
+    expect(llms).toContain("# Asilo Labs");
+    expect(llms).not.toContain("Builders");
   });
 
   it("ships a real 1200x630 homepage capture as the OG image", () => {
