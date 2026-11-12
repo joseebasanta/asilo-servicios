@@ -5,7 +5,7 @@ vi.mock("@googleapis/sheets", () => ({
   default: { auth: { JWT: class {} }, sheets: () => ({ spreadsheets: { values: { append, get } } }) },
 }));
 
-import { POST } from "../src/pages/api/community/submit";
+import { POST } from "../src/pages/_builders/api/community/submit";
 
 const valid = {
   email: "builder@example.com",

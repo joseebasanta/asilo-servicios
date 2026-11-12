@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, it } from "vitest";
 import { resourceCategories } from "../src/data/resources";
-import ResourcesPage from "../src/pages/recursos.astro";
+import ResourcesPage from "../src/pages/_builders/recursos.astro";
 
 const VALID_TAGS = new Set(["free", "freemium", "paid", "open-source", ""]);
 const totalResources = resourceCategories.reduce((sum, category) => sum + category.resources.length, 0);

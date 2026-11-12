@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { GET } from "../src/pages/api/projects/index";
+import { GET } from "../src/pages/_builders/api/projects/index";
 
 describe("GET /api/projects", () => {
   it("stays public read-only but limits one IP to 60 requests per minute", async () => {

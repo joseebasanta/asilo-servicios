@@ -15,16 +15,16 @@ const SURFACES: Array<{ file: string; envVar: string }> = [
   { file: "lib/projects-loader.ts", envVar: "GOOGLE_SHEETS_ID" },
   { file: "lib/projects-loader.ts", envVar: "GOOGLE_SERVICE_ACCOUNT_JSON_BASE64" },
   { file: "lib/projects-loader.ts", envVar: "GOOGLE_SHEETS_RANGE" },
-  { file: "pages/api/projects/submit.ts", envVar: "GOOGLE_SHEETS_ID" },
-  { file: "pages/api/projects/submit.ts", envVar: "GOOGLE_SERVICE_ACCOUNT_JSON_BASE64" },
-  { file: "pages/api/projects/submit.ts", envVar: "GOOGLE_SHEETS_RANGE" },
-  { file: "pages/api/projects/submit.ts", envVar: "APPWRITE_ENDPOINT" },
-  { file: "pages/api/projects/submit.ts", envVar: "APPWRITE_PROJECT_ID" },
-  { file: "pages/api/projects/submit.ts", envVar: "APPWRITE_API_KEY" },
+  { file: "pages/_builders/api/projects/submit.ts", envVar: "GOOGLE_SHEETS_ID" },
+  { file: "pages/_builders/api/projects/submit.ts", envVar: "GOOGLE_SERVICE_ACCOUNT_JSON_BASE64" },
+  { file: "pages/_builders/api/projects/submit.ts", envVar: "GOOGLE_SHEETS_RANGE" },
+  { file: "pages/_builders/api/projects/submit.ts", envVar: "APPWRITE_ENDPOINT" },
+  { file: "pages/_builders/api/projects/submit.ts", envVar: "APPWRITE_PROJECT_ID" },
+  { file: "pages/_builders/api/projects/submit.ts", envVar: "APPWRITE_API_KEY" },
   { file: "lib/turnstile.ts", envVar: "TURNSTILE_SITE_KEY" },
   { file: "lib/turnstile.ts", envVar: "TURNSTILE_SECRET_KEY" },
-  { file: "pages/api/projects/submit.ts", envVar: "TURNSTILE_SECRET_KEY" },
-  { file: "pages/api/projects/submit.ts", envVar: "DEV_ALLOW_DUPLICATE_WEBSITE" },
+  { file: "pages/_builders/api/projects/submit.ts", envVar: "TURNSTILE_SECRET_KEY" },
+  { file: "pages/_builders/api/projects/submit.ts", envVar: "DEV_ALLOW_DUPLICATE_WEBSITE" },
 ];
 
 describe("env read surface", () => {
@@ -43,7 +43,7 @@ describe("env read surface", () => {
   });
 
   it("limits the duplicate-submission override to Astro development mode", () => {
-    const submitEndpoint = readFileSync(src("pages/api/projects/submit.ts"), "utf8");
+    const submitEndpoint = readFileSync(src("pages/_builders/api/projects/submit.ts"), "utf8");
 
     expect(submitEndpoint).toMatch(
       /const devOverride =\s+import\.meta\.env\.DEV &&/,

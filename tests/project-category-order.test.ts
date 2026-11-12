@@ -11,7 +11,7 @@ vi.mock("../src/lib/projects-loader", () => ({
   ],
 }));
 
-import ProjectsPage from "../src/pages/proyectos.astro";
+import ProjectsPage from "../src/pages/_builders/proyectos.astro";
 
 const ascEs = (a: string, b: string) => a.localeCompare(b, "es", { sensitivity: "base" });
 const decodeAttr = (value: string) =>

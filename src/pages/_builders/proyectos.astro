@@ -1,15 +1,15 @@
 ---
-import "../styles/fonts.css";
-import "../styles/global.css";
-import "../styles/motion.css";
-import "../styles/projects.css";
-import SiteHeader from "../components/SiteHeader.astro";
-import SiteFooter from "../components/SiteFooter.astro";
-import SeoHead from "../components/SeoHead.astro";
-import ProjectDirectory from "../components/ProjectDirectory.astro";
-import { loadApprovedProjects } from "../lib/projects-loader";
-import ProjectCard from "../components/ProjectCard.astro";
-import { filterProjects, normalizeSearch, paginateProjects, projectPageUrl } from "../lib/project-search";
+import "../../styles/fonts.css";
+import "../../styles/global.css";
+import "../../styles/motion.css";
+import "../../styles/projects.css";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SeoHead from "../../components/SeoHead.astro";
+import ProjectDirectory from "../../components/ProjectDirectory.astro";
+import { loadApprovedProjects } from "../../lib/projects-loader";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { filterProjects, normalizeSearch, paginateProjects, projectPageUrl } from "../../lib/project-search";
 
 const projects = (await loadApprovedProjects()).map((project, index) => ({ ...project, index }));
 const categories = Array.from(new Map(projects.flatMap(project => project.tags)

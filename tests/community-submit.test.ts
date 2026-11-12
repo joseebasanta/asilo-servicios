@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { COMMUNITY_HEADERS, communitySchema, communityRow } from "../src/lib/community-submit";
 const { append, get } = vi.hoisted(() => ({ append: vi.fn(), get: vi.fn() }));
 vi.mock("@googleapis/sheets", () => ({ default: { auth: { JWT: class {} }, sheets: () => ({ spreadsheets: { values: { append, get } } }) } }));
-import { POST } from "../src/pages/api/community/submit";
+import { POST } from "../src/pages/_builders/api/community/submit";
 const valid = { email: "builder@example.com", name: "Ana Pérez", location: "Caracas, Venezuela", whatsapp: "+58 412 1234567", linkedin: "https://www.linkedin.com/in/ana", role: "Developer", project: "Mi proyecto", description: "" };
 beforeEach(() => { get.mockResolvedValue({ data: { values: [COMMUNITY_HEADERS] } }); });
 afterEach(() => { vi.unstubAllEnvs(); vi.clearAllMocks(); });

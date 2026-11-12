@@ -6,9 +6,9 @@ vi.mock("@googleapis/sheets", () => ({ default: {
   sheets: () => ({ spreadsheets: { values: { get: getValues } } }),
 } }));
 vi.mock("../src/lib/builders-loader", () => ({ loadBuildersCount: async () => 180 }));
-import Home from "../src/pages/index.astro";
-import Directory from "../src/pages/proyectos.astro";
-import { GET } from "../src/pages/api/projects/index";
+import Home from "../src/pages/_builders/index.astro";
+import Directory from "../src/pages/_builders/proyectos.astro";
+import { GET } from "../src/pages/_builders/api/projects/index";
 import { resetProjectsCache } from "../src/lib/projects-loader";
 afterEach(() => { resetProjectsCache(); vi.unstubAllEnvs(); vi.restoreAllMocks(); });
 it("reflects a Sheets approval and revocation in both SSR pages and the API after cache expiry", async () => {

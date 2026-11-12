@@ -7,7 +7,7 @@ vi.mock("../src/lib/projects-loader", () => ({
     author: "Test builder", description: "Project description", tags: index < 12 ? ["AI"] : ["SaaS"],
   })),
 }));
-import ProjectsPage from "../src/pages/proyectos.astro";
+import ProjectsPage from "../src/pages/_builders/proyectos.astro";
 async function render(query = "") {
   const container = await AstroContainer.create();
   return container.renderToString(ProjectsPage, { request: new Request(`https://example.com/proyectos${query}`) });

@@ -16,7 +16,7 @@ vi.mock("@googleapis/sheets", () => ({
   },
 }));
 import sharp from "sharp";
-import { POST } from "../src/pages/api/projects/submit";
+import { POST } from "../src/pages/_builders/api/projects/submit";
 
 // Live Projects headers A–M: H Moderador, I Fecha de moderación, J ID del
 // logo, K ID de revisión, L/M Nota interna.

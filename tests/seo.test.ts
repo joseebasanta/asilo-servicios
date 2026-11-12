@@ -1,8 +1,8 @@
 import { readFileSync, existsSync } from "node:fs";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, it } from "vitest";
-import IndexPage from "../src/pages/index.astro";
-import ProyectosPage from "../src/pages/proyectos.astro";
+import IndexPage from "../src/pages/_builders/index.astro";
+import ProyectosPage from "../src/pages/_builders/proyectos.astro";
 import NotFoundPage from "../src/pages/404.astro";
 
 const SITE = "https://builders.asilodigital.com";

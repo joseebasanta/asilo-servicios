@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, it } from "vitest";
-import ServiciosPage from "../src/pages/servicios.astro";
+import ServiciosPage from "../src/pages/index.astro";
 import {
   clientLogos,
   CTA_HREF,
@@ -48,7 +48,7 @@ describe("landing de servicios v3", () => {
     const html = await render();
 
     expect(html).toContain(`<title>${seo.title}</title>`);
-    expect(html).toContain(`<link rel="canonical" href="${SITE}/servicios">`);
+    expect(html).toContain(`<link rel="canonical" href="${SITE}/">`);
     expect(html).toContain('<meta property="og:site_name" content="Asilo Digital">');
     expect(html).toContain(`<meta property="og:image" content="${SITE}/og-servicios.png">`);
   });
@@ -235,7 +235,7 @@ describe("landing de servicios v3", () => {
     for (const old of ["intellivia_recorrido_web_4x3.mp4", "intellivia-recorrido.mp4", "intellivia-hover.mp4", "intellivia-hover-azul.mp4", "intellivia.webp", "intellivia-poster-v3.jpg"]) {
       expect(existsSync(new URL(`../public/servicios/proyectos/${old}`, import.meta.url))).toBe(false);
     }
-    const page = readFileSync(new URL("../src/pages/servicios.astro", import.meta.url), "utf8");
+    const page = readFileSync(new URL("../src/pages/index.astro", import.meta.url), "utf8");
     expect(page).toContain("initProjectVideos();");
 
     // Las capturas subidas en PNG se convierten a WebP; los originales no quedan publicados.

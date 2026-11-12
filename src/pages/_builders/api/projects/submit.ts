@@ -20,8 +20,8 @@
  *   the captcha is skipped and the other anti-abuse layers still apply)
  */
 
-import { readSubmissionForm } from "../../../lib/submission-body";
-import { prepareLogo } from "../../../lib/projects-logo-server";
+import { readSubmissionForm } from "../../../../lib/submission-body";
+import { prepareLogo } from "../../../../lib/projects-logo-server";
 import type { APIContext } from "astro";
 import googleSheets from "@googleapis/sheets";
 import { Client, ID, Permission, Role, Storage } from "node-appwrite";
@@ -32,12 +32,12 @@ import {
   websiteColumnIndex,
   MIN_FILL_MS,
   validateSubmissionForm,
-} from "../../../lib/projects-submit";
-import { LOGO_BUCKET_ID, validateLogo } from "../../../lib/projects-logo";
+} from "../../../../lib/projects-submit";
+import { LOGO_BUCKET_ID, validateLogo } from "../../../../lib/projects-logo";
 import {
   turnstileConfigured,
   verifyTurnstile,
-} from "../../../lib/turnstile";
+} from "../../../../lib/turnstile";
 
 export const prerender = false;
 
